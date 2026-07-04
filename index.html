@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WNDGBBRLC3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WNDGBBRLC3');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="給 ETF 投資新手的全面教學手冊：從商業本質到實戰資產配置。用最好讀的視覺設計，帶你快速上手。">
@@ -10,32 +19,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* 語意化顏色 Tokens (明亮清新信任綠 - Mint Slate Clean) */
-      --primary: #10b981;        /* 翡翠綠 (Emerald) */
-      --primary-hover: #059669;  /* 深翡翠綠 */
-      --secondary: #14b8a6;      /* 薄荷綠/藍綠色 (Teal) */
-      --secondary-light: #f0fdf4;
+      /* 語意化顏色 Tokens (日系抹茶侘寂風 - Forest Sage & Matcha) */
+      --primary: #659287;          /* 深海綠 (Primary) */
+      --primary-hover: #4e736a;    /* 懸浮深海綠 */
+      --secondary: #88bda4;        /* 中海綠 (Secondary) */
+      --secondary-light: #e6f2dd;  /* 開心果奶油 (區塊強調底色) */
       
-      --bg: #f8fafc;             /* 網頁底色 - 護眼淡冷灰 */
-      --surface: #ffffff;        /* 卡片與主要區塊背景 */
-      --surface-hover: #f1f5f9;
-      --border: #e2e8f0;         /* 框線 */
-      --border-light: #f1f5f9;
+      --bg: #f4f8f1;               /* 網頁大底色 - 極淡抹茶灰白 */
+      --surface: #ffffff;          /* 卡片背景 */
+      --surface-hover: #fcfdfe;
+      --border: #b1d3b9;           /* 框線 - 淡海綠 */
+      --border-light: #e6f2dd;
       
-      --text-main: #0f172a;      /* 主要文字 - Slate 900 */
-      --text-muted: #475569;     /* 次要說明文字 - Slate 600 */
+      --text-main: #2f4842;        /* 主要文字 - 極深墨綠灰 */
+      --text-muted: #5a7770;       /* 次要說明文字 */
       --text-inverse: #ffffff;
       
-      /* 提示與警告色 */
-      --warning-bg: #fffbeb;
-      --warning-border: #f59e0b;
-      --warning-text: #b45309;
-      --danger-bg: #fef2f2;
-      --danger-border: #ef4444;
-      --danger-text: #991b1b;
-      --info-bg: #eff6ff;
-      --info-border: #3b82f6;
-      --info-text: #1e3a8a;
+      /* 提示與警告色 (配合侘寂風進行低飽和度微調，避免生硬刺眼) */
+      --warning-bg: #fdfae6;
+      --warning-border: #d4a373;
+      --warning-text: #8c5e3c;
+      --danger-bg: #fdf2f2;
+      --danger-border: #c97a7a;
+      --danger-text: #7f3d3d;
+      --info-bg: #f0f7f7;
+      --info-border: #88bda4;
+      --info-text: #4e736a;
 
       /* 陰影與圓角 */
       --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
@@ -1042,13 +1051,13 @@
     }
 
     .card.featured-resource {
-      background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
+      background: linear-gradient(135deg, var(--surface) 0%, var(--secondary-light) 100%);
       border: 1px solid var(--primary);
-      box-shadow: var(--shadow-md), 0 4px 20px rgba(16, 185, 129, 0.06);
+      box-shadow: var(--shadow-md), 0 4px 20px rgba(101, 146, 135, 0.06);
       position: relative;
     }
     .card.featured-resource::after {
-      content: '🔥 推薦';
+      content: '🔥 聽眾推薦';
       position: absolute;
       top: 12px;
       right: 12px;
@@ -1058,17 +1067,180 @@
       font-weight: 700;
       padding: 3px 10px;
       border-radius: 99px;
-      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
+      box-shadow: 0 2px 6px rgba(101, 146, 135, 0.2);
     }
     .card.featured-resource .resource-num {
       background-color: var(--primary);
       color: white;
     }
     .card.featured-resource .resource-badge {
-      color: #047857;
-      background-color: rgba(16, 185, 129, 0.08);
+      color: var(--text-main);
+      background-color: rgba(101, 146, 135, 0.12);
       padding: 2px 6px;
       border-radius: 4px;
+    }
+
+    /* ===== 關於作者專區 ===== */
+    .author-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .author-info {
+      display: flex;
+      gap: 24px;
+    }
+    .author-avatar {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+    }
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(101, 146, 135, 0.25);
+    }
+    .author-details h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .author-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .tag-section {
+      margin-top: 16px;
+      text-align: left;
+    }
+    .tag-section-title {
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    .vertical-tags {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .vertical-tags li {
+      margin-bottom: 8px;
+    }
+    .vertical-tags li:last-child {
+      margin-bottom: 0;
+    }
+    .tag-item {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+    .tag-item.tech {
+      background-color: rgba(101, 146, 135, 0.12);
+      color: var(--primary-hover);
+      border: 1px solid rgba(101, 146, 135, 0.2);
+    }
+    .tag-item.interest {
+      background-color: var(--secondary-light);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+    
+    .author-contact h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .author-contact p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .author-contact input,
+    .author-contact textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      background-color: var(--bg);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .author-contact input:focus,
+    .author-contact textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(101, 146, 135, 0.15);
+      background-color: var(--surface);
+    }
+    .submit-btn {
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .submit-btn:hover {
+      background-color: var(--primary-hover);
+    }
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+    .toast-message {
+      display: none;
+      margin-top: 12px;
+      padding: 10px;
+      background-color: var(--secondary-light);
+      border: 1px solid var(--primary);
+      color: var(--text-main);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @media (max-width: 900px) {
+      .author-card {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
+      }
+      .author-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .tag-section {
+        text-align: center;
+      }
     }
 
     /* ===== Footer & Disclaimer ===== */
@@ -2210,6 +2382,63 @@
       </div>
     </section>
 
+    <!-- ===== 關於作者與聯絡資訊 ===== -->
+    <section id="author-profile" class="scroll-fade-in" style="margin-top: 80px;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">關於作者</span>
+          <h2>開發者與專業背景</h2>
+        </div>
+        
+        <div class="author-card">
+          <div class="author-info">
+            <div class="author-avatar">
+              <img src="chh_repo_v3-clean.jpg" alt="LawrenceCHH">
+            </div>
+            <div class="author-details">
+              <h3>LawrenceCHH</h3>
+              <p class="author-sub">AI Engineer</p>
+              
+              <div class="tag-section">
+                <h4 class="tag-section-title">Expertise</h4>
+                <ul class="vertical-tags">
+                  <li><span class="tag-item tech">LLMs</span></li>
+                  <li><span class="tag-item tech">AI</span></li>
+                </ul>
+              </div>
+              
+              <div class="tag-section">
+                <h4 class="tag-section-title">Interests</h4>
+                <ul class="vertical-tags">
+                  <li><span class="tag-item interest">Systems Thinking</span></li>
+                  <li><span class="tag-item interest">Research Methodologies</span></li>
+                  <li><span class="tag-item interest">Business Strategy</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="author-contact">
+            <h4>✉ 聯繫作者</h4>
+            <p>如果您對本教學有任何疑問、建議或合作提案，歡迎填寫您的信箱與我們聯繫：</p>
+            <form id="contact-form" onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <input type="text" id="contact-name" name="name" placeholder="您的姓名 / 稱呼" required>
+              </div>
+              <div class="form-group">
+                <input type="email" id="contact-email" name="email" placeholder="您的電子信箱 (e.g., name@example.com)" required>
+              </div>
+              <div class="form-group">
+                <textarea id="contact-message" name="message" placeholder="寫下您想對作者說的話..." rows="3" required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">送出訊息</button>
+            </form>
+            <div id="form-success-toast" class="toast-message">✓ 感謝您的聯繫！訊息發送成功。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ===== Footer & Disclaimer ===== -->
@@ -2365,6 +2594,72 @@
 
     function closeLightbox() {
       lightbox.classList.remove('show');
+    }
+
+    // ===== 7. 聯絡表單送出 (整合 Google Apps Script 異步發送) =====
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      
+      const form = document.getElementById('contact-form');
+      const submitBtn = form.querySelector('.submit-btn');
+      const toast = document.getElementById('form-success-toast');
+      
+      // 部署完成後，請將您的 Google Apps Script 網頁應用程式 URL 填入下方雙引號中
+      const GAS_URL = "https://script.google.com/macros/s/AKfycbxJ64LyTYh1WyPM51BDWbUephmglLn3r8TvLd5XmJjB6p8Aw4L5mwD63lxdXbkKmfLbFw/exec"; 
+      
+      // 禁用按鈕防止重複點擊
+      submitBtn.disabled = true;
+      submitBtn.textContent = "傳送中...";
+      
+      const formData = new FormData(form);
+      
+      if (GAS_URL) {
+        // 發送真實非同步請求到 Google Apps Script 後端
+        fetch(GAS_URL, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors' // no-cors 模式可規避 file 協議或本地 CORS 跨網域擋信問題
+        })
+        .then(() => {
+          showSuccessFeedback();
+        })
+        .catch(err => {
+          console.error('發送失敗:', err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = "送出訊息";
+          alert('傳送失敗，請稍後再試，或直接以電子郵件聯繫我們！');
+        });
+      } else {
+        // 未設定 GAS_URL 時，執行本機模擬回饋（方便本地預覽與測試）
+        console.log('未設定 GAS_URL，執行本機模擬送出：');
+        for (let [key, val] of formData.entries()) {
+          console.log(`${key}: ${val}`);
+        }
+        setTimeout(() => {
+          showSuccessFeedback();
+        }, 800);
+      }
+      
+      function showSuccessFeedback() {
+        // 顯示成功 Toast
+        toast.style.display = 'block';
+        toast.style.opacity = '1';
+        
+        // 重設按鈕與表單
+        submitBtn.disabled = false;
+        submitBtn.textContent = "送出訊息";
+        form.reset();
+        
+        // 3秒後隱藏 Toast
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transition = 'opacity 0.5s ease';
+          setTimeout(() => {
+            toast.style.display = 'none';
+            toast.style.opacity = '1';
+          }, 500);
+        }, 3000);
+      }
     }
   </script>
 </body>
