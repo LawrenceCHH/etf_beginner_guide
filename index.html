@@ -1402,14 +1402,26 @@
         padding: 60px 0 15px;
       }
       .nav-container {
-        padding: 12px 16px;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px 8px;
+      }
+      .nav-brand {
+        font-size: 1.1rem;
       }
       .nav-menu {
-        gap: 2px;
+        width: 100%;
+        justify-content: flex-start;
+        padding: 4px 4px 8px;
+        gap: 6px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* 讓 iOS 滾動更流暢 */
       }
       .nav-link {
-        padding: 6px 10px;
-        font-size: 0.82rem;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        flex-shrink: 0; /* 防止文字被強行壓縮變窄 */
       }
       .hero {
         padding: 70px 0 50px;
