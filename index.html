@@ -1,742 +1,2371 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="給 ETF 投資新手的全面教學手冊：從商業本質到實戰資產配置。用最好讀的方式，帶你快速上手。">
-<title>ETF 新手教學手冊 · 從零開始學投資</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  --g-50:#f0fdf4; --g-100:#dcfce7; --g-200:#bbf7d0; --g-300:#86efac;
-  --g-400:#4ade80; --g-500:#22c55e; --g-600:#16a34a; --g-700:#15803d;
-  --g-800:#166534; --g-900:#14532d;
-  --ink:#14261c; --ink-2:#3a4a41; --ink-3:#6b7a70;
-  --paper:#ffffff; --wash:#f6faf7; --line:#e3efe7;
-  --amber:#f59e0b; --sky:#0ea5e9; --rose:#f43f5e;
-  --shadow-sm:0 1px 3px rgba(20,60,40,.08),0 1px 2px rgba(20,60,40,.04);
-  --shadow:0 8px 24px rgba(20,80,50,.10),0 2px 6px rgba(20,80,50,.06);
-  --shadow-lg:0 20px 48px rgba(20,80,50,.16);
-  --radius:18px; --radius-sm:12px;
-  --max:960px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{
-  font-family:"Noto Sans TC",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  color:var(--ink); background:var(--wash);
-  line-height:1.85; -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-a{color:var(--g-700);text-decoration:none}
-img{max-width:100%}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="給 ETF 投資新手的全面教學手冊：從商業本質到實戰資產配置。用最好讀的視覺設計，帶你快速上手。">
+  <title>ETF 新手教學手冊 · 從零開始學投資</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* 語意化顏色 Tokens (明亮清新信任綠 - Mint Slate Clean) */
+      --primary: #10b981;        /* 翡翠綠 (Emerald) */
+      --primary-hover: #059669;  /* 深翡翠綠 */
+      --secondary: #14b8a6;      /* 薄荷綠/藍綠色 (Teal) */
+      --secondary-light: #f0fdf4;
+      
+      --bg: #f8fafc;             /* 網頁底色 - 護眼淡冷灰 */
+      --surface: #ffffff;        /* 卡片與主要區塊背景 */
+      --surface-hover: #f1f5f9;
+      --border: #e2e8f0;         /* 框線 */
+      --border-light: #f1f5f9;
+      
+      --text-main: #0f172a;      /* 主要文字 - Slate 900 */
+      --text-muted: #475569;     /* 次要說明文字 - Slate 600 */
+      --text-inverse: #ffffff;
+      
+      /* 提示與警告色 */
+      --warning-bg: #fffbeb;
+      --warning-border: #f59e0b;
+      --warning-text: #b45309;
+      --danger-bg: #fef2f2;
+      --danger-border: #ef4444;
+      --danger-text: #991b1b;
+      --info-bg: #eff6ff;
+      --info-border: #3b82f6;
+      --info-text: #1e3a8a;
 
-/* ===== Progress bar ===== */
-#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
-  background:linear-gradient(90deg,var(--g-400),var(--g-600));transition:width .1s linear}
+      /* 陰影與圓角 */
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      
+      --max-width: 1024px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-/* ===== Header / Nav ===== */
-header.nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(12px);
-  border-bottom:1px solid var(--line);
-}
-.nav-inner{max-width:var(--max);margin:0 auto;padding:12px 20px;
-  display:flex;align-items:center;gap:14px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:1.05rem;
-  color:var(--g-800);white-space:nowrap}
-.brand .logo{width:30px;height:30px;border-radius:9px;flex:none;
-  background:linear-gradient(135deg,var(--g-500),var(--g-700));
-  display:grid;place-items:center;color:#fff;font-size:1rem;
-  box-shadow:0 4px 10px rgba(22,101,52,.35)}
-.nav-links{margin-left:auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-.nav-links::-webkit-scrollbar{display:none}
-.nav-links a{padding:7px 12px;border-radius:999px;font-size:.9rem;font-weight:500;
-  color:var(--ink-2);white-space:nowrap;transition:.2s}
-.nav-links a:hover{background:var(--g-100);color:var(--g-800)}
-.nav-toggle{display:none}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* ===== Layout ===== */
-.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
-section{padding:64px 0 8px}
-.sec-head{margin-bottom:26px}
-.kicker{display:inline-flex;align-items:center;gap:7px;font-weight:700;
-  font-size:.8rem;letter-spacing:.06em;color:var(--g-700);
-  background:var(--g-100);padding:5px 13px;border-radius:999px;margin-bottom:14px}
-h1{font-size:clamp(1.9rem,5.5vw,3.1rem);font-weight:900;line-height:1.25;letter-spacing:-.01em}
-h2{font-size:clamp(1.5rem,4.2vw,2.15rem);font-weight:900;line-height:1.3;letter-spacing:-.01em;color:var(--ink)}
-h3{font-size:1.18rem;font-weight:700;color:var(--g-800)}
-.lead{font-size:1.06rem;color:var(--ink-2);margin-top:12px;max-width:64ch}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
 
-/* ===== Hero ===== */
-.hero{
-  position:relative;padding:78px 0 66px;text-align:center;overflow:hidden;
-  background:
-    radial-gradient(1100px 460px at 50% -12%,var(--g-100),transparent 60%),
-    linear-gradient(180deg,var(--g-50),var(--wash));
-}
-.hero .blob{position:absolute;border-radius:50%;filter:blur(46px);opacity:.5;z-index:0}
-.hero .b1{width:260px;height:260px;background:var(--g-300);top:-40px;left:-60px}
-.hero .b2{width:220px;height:220px;background:var(--g-200);bottom:-60px;right:-40px}
-.hero .wrap{position:relative;z-index:1}
-.hero .tag{display:inline-flex;align-items:center;gap:8px;background:#fff;
-  border:1px solid var(--g-200);color:var(--g-800);font-weight:700;font-size:.85rem;
-  padding:7px 15px;border-radius:999px;box-shadow:var(--shadow-sm);margin-bottom:22px}
-.hero h1{max-width:16ch;margin:0 auto}
-.hero h1 .hl{background:linear-gradient(120deg,var(--g-500),var(--g-700));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.lead{margin:18px auto 0;text-align:center}
-.hero-cta{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:1rem;
-  padding:13px 26px;border-radius:999px;cursor:pointer;border:none;transition:.22s}
-.btn-primary{background:linear-gradient(135deg,var(--g-500),var(--g-700));color:#fff;
-  box-shadow:0 10px 22px rgba(22,101,52,.32)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(22,101,52,.4)}
-.btn-ghost{background:#fff;color:var(--g-800);border:1px solid var(--g-200);box-shadow:var(--shadow-sm)}
-.btn-ghost:hover{background:var(--g-50);transform:translateY(-2px)}
-.hero-stats{margin-top:44px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);
-  padding:14px 20px;min-width:130px;box-shadow:var(--shadow-sm)}
-.stat b{display:block;font-size:1.6rem;font-weight:900;color:var(--g-700);line-height:1.1}
-.stat span{font-size:.82rem;color:var(--ink-3)}
+    body {
+      font-family: "Noto Sans TC", system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-/* ===== Cards ===== */
-.grid{display:grid;gap:16px}
-.g2{grid-template-columns:repeat(2,1fr)}
-.g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
-  padding:22px;box-shadow:var(--shadow-sm);transition:.24s;position:relative}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--g-200)}
-.card .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
-  font-size:1.4rem;margin-bottom:14px;background:var(--g-100)}
-.card h3{margin-bottom:7px;font-size:1.1rem}
-.card p{color:var(--ink-2);font-size:.96rem}
-.card .q{font-weight:900;color:var(--g-600);font-size:.85rem;letter-spacing:.05em;margin-bottom:6px}
+    a {
+      color: var(--primary-hover);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    a:hover {
+      color: var(--secondary);
+    }
 
-/* quick-pack cards accent variants */
-.qp{border-top:4px solid var(--g-400)}
-.qp:nth-child(1){border-top-color:#22c55e}
-.qp:nth-child(2){border-top-color:#0ea5e9}
-.qp:nth-child(3){border-top-color:#f59e0b}
-.qp:nth-child(4){border-top-color:#8b5cf6}
+    /* 頂部細滾動進度條 */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+    }
 
-/* ===== Summary blocks & key points ===== */
-.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
-  padding:26px 26px 22px;box-shadow:var(--shadow-sm);margin-top:4px}
-.klist{list-style:none;display:grid;gap:13px;margin:6px 0 0}
-.klist li{display:flex;gap:12px;align-items:flex-start}
-.klist li .dot{flex:none;width:26px;height:26px;border-radius:8px;background:var(--g-100);
-  color:var(--g-700);display:grid;place-items:center;font-weight:900;font-size:.85rem;margin-top:2px}
-.klist li b{color:var(--ink)}
-.klist li span{color:var(--ink-2)}
+    /* 導覽列 */
+    header.navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--text-main);
+    }
+    .nav-brand svg {
+      color: var(--primary);
+    }
+    .nav-menu {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-menu::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-link {
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--secondary-light);
+      color: var(--primary-hover);
+    }
 
-/* callout / quote */
-.callout{border-left:4px solid var(--g-500);background:var(--g-50);
-  border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:16px 20px;margin-top:18px}
-.callout.warn{border-left-color:var(--amber);background:#fffbeb}
-.callout .ct{font-weight:700;color:var(--g-800);display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.callout.warn .ct{color:#b45309}
-.callout p{color:var(--ink-2);font-size:.97rem}
+    /* 主容器 */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-/* ===== Expandable "full text" ===== */
-.expand{margin-top:18px;border:1px dashed var(--g-300);border-radius:var(--radius-sm);
-  overflow:hidden;background:var(--g-50)}
-.expand>summary{list-style:none;cursor:pointer;padding:14px 18px;
-  display:flex;align-items:center;gap:10px;font-weight:700;color:var(--g-800);
-  font-size:.95rem;user-select:none;transition:.2s}
-.expand>summary::-webkit-details-marker{display:none}
-.expand>summary:hover{background:var(--g-100)}
-.expand>summary .chev{margin-left:auto;transition:transform .3s;font-size:1.1rem;color:var(--g-600)}
-.expand[open]>summary .chev{transform:rotate(180deg)}
-.expand>summary .badge{font-size:.72rem;font-weight:700;background:var(--g-600);color:#fff;
-  padding:2px 9px;border-radius:999px}
-.expand .full{padding:4px 20px 20px;background:#ffff;
-  border-top:1px solid var(--line)}
-.expand .full h4{font-size:1rem;color:var(--g-800);margin:18px 0 6px;font-weight:700}
-.expand .full p{color:var(--ink-2);margin:10px 0;font-size:.97rem}
-.expand .full ul,.expand .full ol{margin:8px 0 8px 4px;padding-left:20px;color:var(--ink-2)}
-.expand .full li{margin:6px 0}
-.expand .full strong{color:var(--ink)}
-.expand .full blockquote{border-left:3px solid var(--g-400);background:var(--g-50);
-  padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;color:var(--ink-2)}
-.expand .full blockquote strong{color:var(--g-800)}
-/* animated reveal */
-.expand .full{animation:reveal .35s ease}
-@keyframes reveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+    section {
+      padding: 80px 0 20px;
+    }
 
-/* ===== Tables ===== */
-.tbl-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);
-  box-shadow:var(--shadow-sm);margin-top:6px;background:#fff}
-table{width:100%;border-collapse:collapse;min-width:560px;font-size:.95rem}
-thead th{background:linear-gradient(135deg,var(--g-600),var(--g-700));color:#fff;
-  font-weight:700;text-align:left;padding:14px 16px;white-space:nowrap}
-tbody td{padding:13px 16px;border-top:1px solid var(--line);color:var(--ink-2);vertical-align:top}
-tbody tr:nth-child(even){background:var(--wash)}
-tbody td:first-child{font-weight:700;color:var(--ink)}
-table strong{color:var(--ink)}
+    .section-header {
+      margin-bottom: 40px;
+      max-width: 700px;
+    }
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--secondary-light);
+      color: var(--primary-hover);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+    .section-header p.lead {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
 
-/* ===== Timeline ===== */
-.timeline{position:relative;margin-top:10px;padding-left:8px}
-.timeline::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;
-  background:linear-gradient(var(--g-300),var(--g-200))}
-.tl-item{position:relative;padding:0 0 20px 52px}
-.tl-item .yr{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:12px;
-  background:#fff;border:2px solid var(--g-400);color:var(--g-700);
-  display:grid;place-items:center;font-size:1.2rem;box-shadow:var(--shadow-sm);z-index:1}
-.tl-item h4{font-size:1.05rem;color:var(--g-800);font-weight:700}
-.tl-item p{color:var(--ink-2);font-size:.95rem;margin-top:3px}
-.tl-item small{color:var(--g-600);font-weight:700}
+    /* ===== Hero 首頁區塊 ===== */
+    .hero {
+      position: relative;
+      padding: 100px 0 80px;
+      text-align: center;
+      overflow: hidden;
+      background: radial-gradient(1200px 500px at 50% -10%, var(--secondary-light), transparent 70%),
+                  linear-gradient(180deg, #f0fdf4 0%, var(--bg) 100%);
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      z-index: 0;
+    }
+    .hero-blob-1 {
+      width: 300px;
+      height: 300px;
+      background-color: #86efac;
+      top: -50px;
+      left: -100px;
+    }
+    .hero-blob-2 {
+      width: 250px;
+      height: 250px;
+      background-color: #a7f3d0;
+      bottom: -80px;
+      right: -50px;
+    }
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 8px 18px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 20ch;
+      margin: 0 auto;
+    }
+    .hero h1 span.gradient-text {
+      background: linear-gradient(120deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p.lead {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin: 20px auto 0;
+      max-width: 600px;
+    }
+    .hero-actions {
+      margin-top: 36px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 30px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--text-inverse);
+      box-shadow: 0 10px 20px rgba(16, 185, 129, 0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(16, 185, 129, 0.35);
+    }
+    .btn-ghost {
+      background-color: var(--surface);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-ghost:hover {
+      background-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+    .hero-stats {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .stat-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    .stat-card b {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .stat-card span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
 
-/* ===== Steps ===== */
-.steps{counter-reset:step;display:grid;gap:14px;margin-top:6px}
-.step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);
-  border-radius:var(--radius-sm);padding:18px 20px;box-shadow:var(--shadow-sm);
-  transition:.2s;position:relative}
-.step:hover{border-color:var(--g-200);box-shadow:var(--shadow);transform:translateX(3px)}
-.step::before{counter-increment:step;content:counter(step);flex:none;
-  width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--g-500),var(--g-700));
-  color:#fff;font-weight:900;display:grid;place-items:center;font-size:1.1rem;
-  box-shadow:0 5px 12px rgba(22,101,52,.3)}
-.step h4{font-size:1.03rem;color:var(--ink);font-weight:700}
-.step p{color:var(--ink-2);font-size:.94rem;margin-top:2px}
-.step .opt{font-size:.72rem;font-weight:700;color:var(--g-700);background:var(--g-100);
-  padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+    /* ===== 通用卡片與排版 ===== */
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    .g-2 { grid-template-columns: repeat(2, 1fr); }
+    .g-3 { grid-template-columns: repeat(3, 1fr); }
+    .g-4 { grid-template-columns: repeat(4, 1fr); }
 
-/* ===== Resources ===== */
-.res{display:flex;gap:14px;align-items:flex-start}
-.res .rn{flex:none;width:40px;height:40px;border-radius:11px;background:var(--g-100);
-  color:var(--g-700);font-weight:900;display:grid;place-items:center}
-.res h3{font-size:1.05rem}
-.res .type{font-size:.78rem;font-weight:700;color:var(--g-600);margin:3px 0 6px}
-.res p{font-size:.92rem;color:var(--ink-2)}
-.res a.link{display:inline-flex;align-items:center;gap:5px;margin-top:9px;
-  font-weight:700;font-size:.88rem;color:var(--g-700)}
-.res a.link:hover{text-decoration:underline}
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background-color: var(--secondary-light);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+    }
+    .card-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .card-badge {
+      display: inline-block;
+      font-weight: 900;
+      color: var(--primary);
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
 
-/* ===== Footer ===== */
-footer{margin-top:60px;background:linear-gradient(135deg,var(--g-800),var(--g-900));
-  color:#d9f0e2;padding:44px 0 34px}
-footer .wrap{display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
-footer .fbrand{font-weight:900;font-size:1.2rem;color:#fff;display:flex;align-items:center;gap:9px}
-footer .disc{font-size:.85rem;color:#a7d3ba;max-width:60ch;line-height:1.7}
-footer .fnav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:4px}
-footer .fnav a{color:#cdeadb;font-size:.88rem;padding:5px 11px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.15)}
-footer .fnav a:hover{background:rgba(255,255,255,.1);color:#fff}
+    /* ===== 手風琴面板 (Accordion) ===== */
+    .accordion-btn {
+      width: 100%;
+      background: none;
+      border: 1px dashed var(--primary);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-hover);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+      user-select: none;
+      margin-top: 24px;
+    }
+    .accordion-btn:hover {
+      background-color: var(--secondary-light);
+    }
+    .accordion-btn .btn-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .accordion-btn .btn-label .badge {
+      font-size: 0.72rem;
+      background-color: var(--primary);
+      color: var(--text-inverse);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .accordion-btn svg.chev {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      opacity: 0;
+      background-color: var(--surface);
+      border: 0 solid var(--border);
+      border-radius: var(--radius-md);
+    }
+    .accordion-content.open {
+      opacity: 1;
+      border-width: 1px;
+      margin-top: 12px;
+      padding: 24px;
+    }
+    .full-text h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-hover);
+      margin: 20px 0 8px;
+    }
+    .full-text h4:first-of-type {
+      margin-top: 0;
+    }
+    .full-text p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+    }
+    .full-text ul, .full-text ol {
+      margin: 12px 0 12px 20px;
+      color: var(--text-muted);
+    }
+    .full-text li {
+      margin-bottom: 6px;
+    }
+    .full-text blockquote {
+      border-left: 4px solid var(--primary);
+      background-color: var(--secondary-light);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 16px 0;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
 
-/* ===== Back to top ===== */
-#toTop{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;
-  background:linear-gradient(135deg,var(--g-500),var(--g-700));color:#fff;border:none;
-  font-size:1.2rem;cursor:pointer;box-shadow:var(--shadow);z-index:90;
-  opacity:0;pointer-events:none;transform:translateY(12px);transition:.3s}
-#toTop.show{opacity:1;pointer-events:auto;transform:none}
+    /* ===== 摘要版面與列點 ===== */
+    .summary-panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .summary-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+    .summary-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .summary-list .bullet {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--secondary-light);
+      color: var(--primary-hover);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .summary-list .text b {
+      color: var(--text-main);
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .summary-list .text span {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
 
-/* reveal on scroll */
-.reveal{opacity:0;transform:translateY(22px);transition:.6s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
+    /* 資訊提示盒 */
+    .callout {
+      display: flex;
+      gap: 16px;
+      border-left: 4px solid var(--primary);
+      background-color: var(--secondary-light);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .callout-icon {
+      flex-shrink: 0;
+      color: var(--primary);
+    }
+    .callout-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+    .callout-content h4 {
+      font-weight: 700;
+      color: var(--primary-hover);
+      margin-bottom: 4px;
+    }
+    .callout-content p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+    .callout.warn {
+      border-left-color: var(--warning-border);
+      background-color: var(--warning-bg);
+    }
+    .callout.warn .callout-icon {
+      color: var(--warning-border);
+    }
+    .callout.warn .callout-content h4 {
+      color: var(--warning-text);
+    }
+    .callout.warn .callout-content p {
+      color: var(--text-muted);
+    }
 
-/* ===== Responsive ===== */
-@media(max-width:820px){
-  .g4{grid-template-columns:repeat(2,1fr)}
-  .g3{grid-template-columns:1fr}
-}
-@media(max-width:600px){
-  section{padding:48px 0 6px}
-  .g2,.g3,.g4{grid-template-columns:1fr}
-  .hero{padding:56px 0 48px}
-  .nav-links{gap:2px}
-  .nav-links a{padding:6px 9px;font-size:.82rem}
-  .panel{padding:20px 18px}
-  .step{padding:16px}
-  .hero-stats .stat{min-width:calc(50% - 7px)}
-}
-@media(prefers-reduced-motion:reduce){
-  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
-}
-</style>
+    /* ===== 第一章：時間軸 ===== */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 39px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 32px 50px;
+    }
+    .timeline-icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--surface);
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-sm);
+      z-index: 1;
+    }
+    .timeline-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .timeline-time {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 2px;
+      display: block;
+    }
+    .timeline-item h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .timeline-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ===== 第二章：觀念澄清對照卡 ===== */
+    .clarity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .clarity-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .clarity-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .clarity-card-header h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .clarity-icon-1 { color: var(--warning-border); }
+    .clarity-icon-2 { color: var(--primary); }
+
+    /* 表格 */
+    .table-container {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      margin: 20px 0;
+      background-color: var(--surface);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+    thead th {
+      background-color: var(--border-light);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 14px 18px;
+    }
+    tbody td {
+      padding: 14px 18px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) {
+      background-color: var(--bg);
+    }
+    tbody td:first-child {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* ===== 第三章：定存 vs ETF 比較 ===== */
+    .versus-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .versus-card {
+      border: 2px solid transparent;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background-color: var(--surface);
+      box-shadow: var(--shadow-sm);
+    }
+    .versus-defend {
+      border-color: #cbd5e1; /* Slate 300 */
+      background: linear-gradient(180deg, var(--surface) 0%, #f8fafc 100%);
+    }
+    .versus-attack {
+      border-color: var(--primary);
+      background: linear-gradient(180deg, var(--surface) 0%, var(--secondary-light) 100%);
+    }
+    .versus-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .versus-header h4 {
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+    .versus-header .versus-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .versus-defend .versus-badge { background-color: #e2e8f0; color: #475569; }
+    .versus-attack .versus-badge { background-color: var(--primary); color: var(--text-inverse); }
+    
+    .versus-list {
+      display: grid;
+      gap: 16px;
+      list-style: none;
+    }
+    .versus-list li {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .versus-list li:last-child {
+      border: none;
+      padding: 0;
+    }
+    .versus-list label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .versus-list span {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    /* 定存三情境卡 */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .scenario-card {
+      background-color: var(--warning-bg);
+      border: 1px solid #fef3c7; /* Amber 100 */
+      border-left: 4px solid var(--warning-border);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 20px;
+    }
+    .scenario-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warning-text);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .scenario-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ===== 第四章：主流 ETF 卡片 ===== */
+    .tilt-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .tilt-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .tilt-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg), 0 20px 40px rgba(16, 185, 129, 0.08);
+    }
+    .tilt-card-0050:hover { border-color: #10b981; }
+    .tilt-card-voo:hover { border-color: #0ea5e9; }
+    .tilt-card-qqq:hover { border-color: #8b5cf6; }
+
+    /* glow effect inside card */
+    .tilt-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(400px circle at var(--x, 0px) var(--y, 0px), rgba(20, 184, 166, 0.08), transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tilt-card:hover::before {
+      opacity: 1;
+    }
+    
+    .tilt-card-content {
+      position: relative;
+      z-index: 1;
+      transform: translateZ(20px);
+    }
+    .tilt-card .ico {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+    }
+    .tilt-card-0050 .ico { background-color: #ecfdf5; color: #10b981; }
+    .tilt-card-voo .ico { background-color: #f0f9ff; color: #0ea5e9; }
+    .tilt-card-qqq .ico { background-color: #f5f3ff; color: #8b5cf6; }
+
+    .tilt-card h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    .tilt-card .detail-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .tilt-card .detail-list li {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+    .tilt-card .detail-list li strong {
+      color: var(--text-main);
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1px;
+    }
+    .tilt-card .detail-list .pros { color: var(--primary-hover); }
+    .tilt-card .detail-list .cons { color: var(--warning-text); }
+    .tilt-card .target {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      font-size: 0.88rem;
+      color: var(--text-main);
+    }
+    .tilt-card .target strong {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    /* ===== 第五章：實戰步驟 ===== */
+    .stepper {
+      display: grid;
+      gap: 16px;
+    }
+    .stepper-item {
+      display: flex;
+      gap: 20px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+    }
+    .stepper-item:hover {
+      border-color: var(--primary);
+      transform: translateX(4px);
+    }
+    /* 已打勾/選中狀態 */
+    .stepper-item.checked {
+      background-color: var(--secondary-light);
+      border-color: var(--primary);
+    }
+    
+    .stepper-checkbox {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: grid;
+      place-items: center;
+      background-color: var(--surface);
+      color: transparent;
+      transition: var(--transition);
+    }
+    .stepper-item:hover .stepper-checkbox {
+      border-color: var(--primary);
+    }
+    .stepper-item.checked .stepper-checkbox {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: var(--text-inverse);
+    }
+    .stepper-checkbox svg {
+      width: 18px;
+      height: 18px;
+    }
+    .stepper-content h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stepper-content h4 span.tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background-color: var(--info-bg);
+      color: var(--info-text);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .stepper-content p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
+    /* 國泰步驟 */
+    .cathay-steps {
+      display: grid;
+      gap: 40px;
+      margin-top: 32px;
+    }
+    .cathay-step {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .cathay-step-header {
+      margin-bottom: 20px;
+    }
+    .cathay-step-header span {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cathay-step-header h4 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+    .cathay-step p {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    /* 步驟圖包裝 */
+    .cathay-img-box {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      background-color: var(--bg);
+      margin-bottom: 12px;
+      cursor: zoom-in;
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+    }
+    .cathay-img-box:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border);
+    }
+    .cathay-img-box img {
+      max-height: 480px;
+      object-fit: contain;
+      width: auto;
+      max-width: 100%;
+    }
+    .cathay-img-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== 延伸閱讀資源卡 ===== */
+    .resource-card {
+      display: flex;
+      gap: 20px;
+    }
+    .resource-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background-color: var(--secondary-light);
+      color: var(--primary-hover);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+    .resource-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+    .resource-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .resource-body p {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--primary-hover);
+    }
+    .resource-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s;
+    }
+    .resource-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .card.featured-resource {
+      background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
+      border: 1px solid var(--primary);
+      box-shadow: var(--shadow-md), 0 4px 20px rgba(16, 185, 129, 0.06);
+      position: relative;
+    }
+    .card.featured-resource::after {
+      content: '🔥 推薦';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background-color: var(--primary);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 99px;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
+    }
+    .card.featured-resource .resource-num {
+      background-color: var(--primary);
+      color: white;
+    }
+    .card.featured-resource .resource-badge {
+      color: #047857;
+      background-color: rgba(16, 185, 129, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* ===== Footer & Disclaimer ===== */
+    footer {
+      background: linear-gradient(180deg, var(--text-main) 0%, #020617 100%);
+      color: #94a3b8;
+      padding: 60px 0 40px;
+      margin-top: 80px;
+      border-top: 1px solid #1e293b;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--surface);
+      font-weight: 900;
+      font-size: 1.3rem;
+    }
+    .footer-brand svg {
+      color: var(--primary);
+    }
+    .footer-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-nav a {
+      color: #64748b;
+      font-size: 0.88rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid #334155;
+    }
+    .footer-nav a:hover {
+      background-color: #1e293b;
+      color: var(--surface);
+      border-color: #475569;
+    }
+    .footer-disclaimer {
+      font-size: 0.82rem;
+      color: #475569;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    /* ===== 懸浮回頂部按鈕 ===== */
+    #back-to-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--text-inverse);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      z-index: 999;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(15px);
+      transition: var(--transition);
+    }
+    #back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    #back-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Lightbox 點擊放大圖片功能 */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(15, 23, 42, 0.95);
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      transition: opacity 0.3s ease;
+      cursor: zoom-out;
+    }
+    .lightbox.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox img {
+      max-width: 95%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .lightbox.show img {
+      transform: scale(1);
+    }
+
+    /* 滾動動畫 classes */
+    .scroll-fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .scroll-fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== 響應式佈局 ===== */
+    @media (max-width: 900px) {
+      .g-3, .g-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .tilt-card-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 0 15px;
+      }
+      .nav-container {
+        padding: 12px 16px;
+      }
+      .nav-menu {
+        gap: 2px;
+      }
+      .nav-link {
+        padding: 6px 10px;
+        font-size: 0.82rem;
+      }
+      .hero {
+        padding: 70px 0 50px;
+      }
+      .g-2 {
+        grid-template-columns: 1fr;
+      }
+      .versus-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .scenario-grid {
+        grid-template-columns: 1fr;
+      }
+      .resource-card {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .g-3, .g-4 {
+        grid-template-columns: 1fr;
+      }
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+      .summary-panel {
+        padding: 20px;
+      }
+      .clarity-grid {
+        grid-template-columns: 1fr;
+      }
+      .cathay-step {
+        padding: 20px;
+      }
+      .cathay-img-box img {
+        max-height: 350px;
+      }
+    }
+
+    /* 支援減弱動態效果 */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+      .scroll-fade-in {
+        opacity: 1;
+        transform: none;
+      }
+      .tilt-card {
+        transform: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-<div id="progress"></div>
+  <!-- 頂部滾動進度條 -->
+  <div id="progress-bar"></div>
 
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="#top"><span class="logo">🌱</span>ETF 新手手冊</a>
-    <nav class="nav-links">
-      <a href="#quickstart">懶人包</a>
-      <a href="#history">股票起源</a>
-      <a href="#business">商業本質</a>
-      <a href="#allocation">資產配置</a>
-      <a href="#etf">主流 ETF</a>
-      <a href="#practice">實戰步驟</a>
-      <a href="#more">延伸閱讀</a>
-    </nav>
-  </div>
-</header>
-
-<!-- ===== HERO ===== -->
-<div class="hero" id="top">
-  <span class="blob b1"></span><span class="blob b2"></span>
-  <div class="wrap">
-    <span class="tag">📘 給投資新手的全面教學手冊</span>
-    <h1>從<span class="hl">商業本質</span>到<br>實戰<span class="hl">資產配置</span></h1>
-    <p class="lead">不用會挑股票、不用盯盤。用最好讀的方式，帶你搞懂 ETF 是什麼、為什麼買、以及怎麼踏出第一步。</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#quickstart">⚡ 30 秒快速上手</a>
-      <a class="btn btn-ghost" href="#practice">🚀 我要開始買</a>
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a class="nav-brand" href="#top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        ETF 新手教學
+      </a>
+      <nav class="nav-menu">
+        <a href="#quickstart" class="nav-link">懶人包</a>
+        <a href="#history" class="nav-link">股票起源</a>
+        <a href="#business" class="nav-link">商業本質</a>
+        <a href="#allocation" class="nav-link">資產配置</a>
+        <a href="#etf" class="nav-link">主流 ETF</a>
+        <a href="#practice" class="nav-link">實戰步驟</a>
+        <a href="#more" class="nav-link">延伸閱讀</a>
+      </nav>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><b>7~10%</b><span>大盤長期年化歷史平均</span></div>
-      <div class="stat"><b>100 元</b><span>定期定額最低門檻</span></div>
-      <div class="stat"><b>400 年</b><span>股票財富革命史</span></div>
-      <div class="stat"><b>5 章</b><span>從觀念到實戰</span></div>
-    </div>
-  </div>
-</div>
+  </header>
 
-<main>
-
-<!-- ===== 第零章 快速上手 ===== -->
-<section id="quickstart">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">第零章 · 30 秒快速上手</span>
-      <h2>先看這 4 張卡片，你就懂一半了</h2>
-      <p class="lead">趕時間？這裡是整份手冊的濃縮精華，看完就能開始行動。</p>
-    </div>
-    <div class="grid g4">
-      <div class="card qp reveal">
-        <div class="q">Q1</div>
-        <div class="ico">🍉</div>
-        <h3>什麼是 ETF？</h3>
-        <p>它就像一盤「綜合水果盤」，花少少的錢買一口，就等於同時持有全市場最頂尖的幾十家大公司，不用自己挑到眼花。</p>
+  <!-- ===== HERO 首頁區塊 ===== -->
+  <div class="hero" id="top">
+    <span class="hero-blob hero-blob-1"></span>
+    <span class="hero-blob hero-blob-2"></span>
+    <div class="container">
+      <span class="hero-tag">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+        給投資新手的全面教學手冊
+      </span>
+      <h1>從 <span class="gradient-text">商業本質</span> 到<br>實戰 <span class="gradient-text">資產配置</span></h1>
+      <p class="lead">不用會挑股票、不用天天盯盤。用最好讀的視覺設計，帶你輕鬆搞懂 ETF 是什麼、該不該投資，以及如何踏出第一步。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#quickstart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          30秒快速上手
+        </a>
+        <a class="btn btn-ghost" href="#practice">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          我要開始買
+        </a>
       </div>
-      <div class="card qp reveal">
-        <div class="q">Q2</div>
-        <div class="ico">⚖️</div>
-        <h3>定存還是 ETF？</h3>
-        <p>定存是「保本防禦」，確保資產安全；大盤型 ETF 是「資產進攻」，跟著一流企業成長對抗通膨。兩者互相搭配，不是二選一。</p>
-      </div>
-      <div class="card qp reveal">
-        <div class="q">Q3</div>
-        <div class="ico">🎯</div>
-        <h3>新手買哪一檔？</h3>
-        <p>不用瞎猜！台股常見選擇是追蹤全台前 50 大企業的 <b>0050</b>；美股則是追蹤美國 500 強的 <b>VOO</b>。</p>
-      </div>
-      <div class="card qp reveal">
-        <div class="q">Q4</div>
-        <div class="ico">🔁</div>
-        <h3>怎麼買？</h3>
-        <p>極其簡單。開好證券戶並綁定銀行交割帳戶，設定「每月定期定額」自動扣款，然後專注本業、安心生活。</p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <b>7% ~ 10%</b>
+          <span>大盤長期歷史年化回報</span>
+        </div>
+        <div class="stat-card">
+          <b>100 元</b>
+          <span>定期定額最低起申購額</span>
+        </div>
+        <div class="stat-card">
+          <b>400 年</b>
+          <span>股票財富革命變遷歷史</span>
+        </div>
+        <div class="stat-card">
+          <b>5 大章節</b>
+          <span>從基礎觀念到開戶實戰</span>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ===== 第一章 股票起源 ===== -->
-<section id="history">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">第一章 · 股票的前世今生</span>
-      <h2>400 年來的財富革命</h2>
-      <p class="lead">股票的誕生，成功把「個人的冒險資本」轉化為「集體的社會財富」——這是理解投資的第一塊拼圖。</p>
-    </div>
+  <main class="container">
 
-    <div class="panel reveal">
-      <div class="timeline">
-        <div class="tl-item">
-          <span class="yr">⛵</span>
-          <small>15–17 世紀</small>
-          <h4>大航海時代：風險太大，於是有了「合資」</h4>
-          <p>航向亞洲找香料能暴利，但船沉了商人就破產。1602 年荷蘭東印度公司（VOC）向全國募資，發行股份憑證，開創「有限責任」與「利益共享」。1611 年阿姆斯特丹成立世界第一家證交所。</p>
+    <!-- ===== 第零章 快速上手 ===== -->
+    <section id="quickstart">
+      <div class="section-header scroll-fade-in">
+        <span class="section-kicker">第零章 · 30秒快速上手</span>
+        <h2>新手必看懶人包</h2>
+        <p class="lead">趕時間？這裡將手冊的精華濃縮成四個最核心的問題，幫你快速搞懂。</p>
+      </div>
+      
+      <div class="grid g-4">
+        <div class="card scroll-fade-in" style="border-top: 4px solid #10b981;">
+          <div class="card-badge">QUESTION 01</div>
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>什麼是 ETF？</h3>
+          <p>它就像一盤「綜合水果盤」。你只要花少少的錢買一口，就等於同時吃到了全市場最賺錢、最頂尖的幾十家大公司股票，不用自己挑到眼花。</p>
         </div>
-        <div class="tl-item">
-          <span class="yr">🫧</span>
-          <small>18–19 世紀</small>
-          <h4>投機泡沫催生了法規</h4>
-          <p>1720 年南海泡沫，連牛頓都賠錢：「我能計算天體運行，卻無法計算人類的瘋狂。」1792 年華爾街「梧桐樹協議」成為 NYSE 前身。</p>
+        
+        <div class="card scroll-fade-in" style="border-top: 4px solid #0ea5e9;">
+          <div class="card-badge">QUESTION 02</div>
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>該選定存還是 ETF？</h3>
+          <p>定存是「保本防禦」工具，確保資金絕對安全；大盤型 ETF 是「資產進攻」工具，共享經濟成長。兩者並非對立，而是需要依據個人需求靈活搭配。</p>
         </div>
-        <div class="tl-item">
-          <span class="yr">📈</span>
-          <small>20 世紀至今</small>
-          <h4>現代股市與全民指數化</h4>
-          <p>1934 年美國成立 SEC，奠定「公平、公正、公開」。1976 年柏格推出世界第一檔 S&amp;P 500 指數基金，提倡「買下整個市場」。</p>
+        
+        <div class="card scroll-fade-in" style="border-top: 4px solid #f59e0b;">
+          <div class="card-badge">QUESTION 03</div>
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3>新手該買哪一檔？</h3>
+          <p>不用瞎猜！台股常見的穩健選擇是追蹤全台前 50 大企業的 <b>0050（元大台灣50）</b>；美股則是佈局美國 500 強巨頭的 <b>VOO（Vanguard標普500）</b>。</p>
+        </div>
+        
+        <div class="card scroll-fade-in" style="border-top: 4px solid #8b5cf6;">
+          <div class="card-badge">QUESTION 04</div>
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          </div>
+          <h3>要怎麼買？</h3>
+          <p>極其簡單。線上開立好證券戶並綁定好銀行帳戶，直接設定「每月定期定額」自動扣款買進，接著專注於本業與安心享受生活。</p>
         </div>
       </div>
-      <div class="callout">
-        <div class="ct">💡 核心心法</div>
-        <p>股票的本質從未改變——它是企業募資的工具，也是一般人共享社會經濟進步的橋樑。只要人類科技與文明持續進步，代表頂尖企業集合的大盤，長線趨勢就會持續上升。</p>
+    </section>
+
+    <!-- ===== 第一章 股票起源 ===== -->
+    <section id="history">
+      <div class="section-header scroll-fade-in">
+        <span class="section-kicker">第一章 · 股票的前世今生</span>
+        <h2>400 年來的財富革命</h2>
+        <p class="lead">股票成功的將「個人的冒險資本」轉化為「集體的社會財富」，了解它才能理解為何股市長線向上。</p>
       </div>
 
-      <details class="expand">
-        <summary><span class="badge">原文</span> 展開第一章完整內容 <span class="chev">⌄</span></summary>
-        <div class="full">
-          <p>在開始買賣之前，我們必須先知道「股票」是怎麼來的。股票的誕生是人類金融史上最偉大的創新之一，它成功將「個人的冒險資本」轉化為「集體的社會財富」。</p>
-          <h4>1. 股票的起源：大航海時代與海上冒險（15-17世紀）</h4>
-          <p>在 16 世紀末，歐洲掀起了前往亞洲尋找香料（胡椒、肉桂）的狂熱。當時一艘商船只要能平安返航，帶回的香料就能獲得數倍暴利。</p>
-          <ul>
-            <li><strong>痛點：</strong>海上航行面臨風暴、海盜等極高風險，「船沉了，商人就破產了」。且建造大船需龐大資金，單一商人難以負擔。</li>
-            <li><strong>世界第一家股份公司（1602年）：</strong>荷蘭人創立了「荷蘭東印度公司」（VOC），向全荷蘭國民募集資金，發行紙質的「股份憑證」。這開創了「有限責任」與「利益共享」機制 —— 船沉了，投資人最多損失買股票的錢；成功返航，則依持股比例分紅。</li>
-            <li><strong>世界第一家證券交易所（1611年）：</strong>股票發行後，投資人有變現需求。荷蘭阿姆斯特丹成立了世界第一家證券交易所，股票開始有了「市場價格」並允許自由轉讓。</li>
-          </ul>
-          <h4>2. 投機泡沫與法規誕生（18-19世紀）</h4>
-          <ul>
-            <li><strong>南海與密西西比泡沫（1720年）：</strong>英國與法國的公司利用貿易壟斷權瘋狂吹捧獲利前景，引發投機狂熱。連科學家牛頓也參與其中並留下名言：「我能計算天體的運行，卻無法計算人類的瘋狂。」隨後英國通過《泡沫法案》嚴格限制公司成立，股市沉寂百年。</li>
-            <li><strong>工業革命與華爾街崛起：</strong>1792 年，24 名經紀人在紐約華爾街簽署「梧桐樹協議」，成為紐約證券交易所（NYSE）前身。19 世紀造鐵路、採礦的龐大資金需求，讓華爾街正式成為全球金融中心。</li>
-          </ul>
-          <h4>3. 現代股市建立與全民大航海時代（20世紀至今）</h4>
-          <ul>
-            <li><strong>1929年大蕭條與監管：</strong>股市過度槓桿引發大崩盤後，美國在 1934 年成立證券交易委員會（SEC），實施嚴格的資訊揭露制度，奠定「公平、公正、公開」基石。</li>
-            <li><strong>電子化與指數化：</strong>1971 年納斯達克（NASDAQ）成立；1976 年先鋒集團（Vanguard）創辦人約翰·柏格推出世界第一檔追蹤 S&amp;P 500 的指數基金，提倡「買下整個市場」，改變了長線投資觀念。</li>
-          </ul>
-          <blockquote>股票的本質從未改變 —— 它是企業家募集資金的工具，也是一般人共享社會經濟進步成果的橋樑。只要人類科技與文明在進步，代表頂尖企業集合的大盤，長線趨勢就會持續上升。</blockquote>
+      <div class="summary-panel scroll-fade-in">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 18H2a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4Z"/><path d="M10 2v16"/><path d="M10 2s3 4 8 4a8 8 0 0 1-8 5"/></svg>
+            </div>
+            <span class="timeline-time">15 - 17 世紀</span>
+            <h4>大航海時代：香料狂熱與風險分攤的誕生</h4>
+            <p>海上冒險面臨沉船和海盜等極高風險。1602年荷蘭成立「東印度公司」(VOC)，發行股份憑證招募國民資金，開創「有限責任」與「利益共享」機制。1611年阿姆斯特丹建立第一家證交所滿足交易變現需求。</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="9" cy="9" r="2"/><circle cx="15" cy="13" r="1.5"/></svg>
+            </div>
+            <span class="timeline-time">18 - 19 世紀</span>
+            <h4>投機泡沫破裂與法規的洗禮</h4>
+            <p>1720 年「南海泡沫」引發空前投機狂熱，連科學家牛頓也認賠並感嘆無法計算人類的瘋狂。法規《泡沫法案》隨之誕生以約束公司。1792 年華爾街「梧桐樹協議」簽署，工業革命建設（鐵路、採礦）使股市蓬勃發展。</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 3 3 9 4-2 5 7 6-6"/><path d="M3 3v18h18"/></svg>
+            </div>
+            <span class="timeline-time">20 世紀至今</span>
+            <h4>現代公正監管與指數投資革命</h4>
+            <p>1929 年大蕭條後，美國於 1934 年成立證券交易委員會 (SEC) 實施嚴格的資訊揭露。1976 年先鋒集團約翰·柏格推出世界首檔 S&P 500 指數基金，提倡「買下整個市場」，開啟現代化全民長線指數化投資。</p>
+          </div>
         </div>
-      </details>
-    </div>
-  </div>
-</section>
 
-<!-- ===== 第二章 商業本質 ===== -->
-<section id="business">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">第二章 · 商業的本質與現金流動</span>
-      <h2>買股票，到底是在買什麼？</h2>
-      <p class="lead">把買股票想像成「跟朋友合資開雞排店」：你出資、拿到股份、月底依比例分紅。你不用懂怎麼做生意，成為微型股東，就讓全球頂尖菁英幫你賺錢。</p>
-    </div>
-
-    <div class="panel reveal">
-      <h3 style="margin-bottom:14px">3 個新手最常混淆的觀念</h3>
-      <ul class="klist">
-        <li><span class="dot">1</span><span><b>你的錢真的給公司嗎？</b>　只有 IPO／增資時，現金才會流進企業。平常在 App 買台積電、Apple 的股票，錢是流進「賣方」口袋，企業一毛也拿不到。</span></li>
-        <li><span class="dot">2</span><span><b>利息 vs. 股利</b>　利息是你「借錢」給銀行／債券，不管賺賠都固定支付；股利是你身為「股東」，公司賺錢後分你的紅利，虧錢時可以不發。</span></li>
-        <li><span class="dot">3</span><span><b>不是零和遊戲</b>　長線投資人不是在玩「找接盤俠」，而是持續持有、與全球頂尖企業共享長期營運利潤與資產增值。</span></li>
-      </ul>
-
-      <h3 style="margin:24px 0 10px">實戰解析：iPhone 推出時，錢怎麼流動？</h3>
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr><th>參與角色</th><th>動作</th><th>現金流向</th><th>股票／資產變動</th></tr></thead>
-          <tbody>
-            <tr><td>消費者</td><td>購買新手機</td><td>💸 流向 Apple 與台灣供應鏈</td><td>❌ 無股票變動</td></tr>
-            <tr><td>投資人／機構</td><td>看好新機前景</td><td>💸 流向證券市場（買方）</td><td>📈 資金推升市場整體估值</td></tr>
-            <tr><td>Apple 企業</td><td>賺取手機利潤</td><td>💸 支付供應鏈、發股利、買庫藏股</td><td>📉 流通股數減少（內在價值變高）</td></tr>
-            <tr><td>長線投資人／ETF</td><td>持續長期持有</td><td>💰 獲得股利或資產淨值增長</td><td>🔄 與企業共享長期獲利與成長</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout">
-        <div class="ct">💡 邏輯修正提醒</div>
-        <p>股價反映的是企業長期的價值成長。長線投資人（含大盤型 ETF 持有者）並非玩「低買高賣、尋找接盤俠」的零和遊戲，而是透過持續持有，與全球頂尖企業共享長期利潤與資產增值。</p>
-      </div>
-
-      <details class="expand">
-        <summary><span class="badge">原文</span> 展開第二章完整內容 <span class="chev">⌄</span></summary>
-        <div class="full">
-          <p>你可以把買股票想像成「跟朋友合資開雞排店」。你出資 10 萬元，朋友給你一張收據，寫著你擁有這家店 10% 的股份。月底結帳淨賺 5 萬元，朋友依據 10% 股份分給你 5,000 元。這就是股票最迷人的地方：你不需要懂怎麼做生意，只要購買股票成為微型股東，全球頂尖菁英就會幫你賺錢。</p>
-          <p>很多新手常混淆幾個觀念，我們一次釐清：</p>
-          <h4>1. 觀念澄清：你買股票的錢，真的是給公司嗎？</h4>
-          <ul>
-            <li><strong>初次上市（IPO）或增資：</strong>只有在這時候，投資人掏出的現金才會直接流進企業的銀行帳戶，企業因此獲得發展資金。</li>
-            <li><strong>一般股市交易（次級市場）：</strong>你現在天天在 App 上買的 Apple (AAPL) 或台積電 (2330) 股票，其實是「其他投資人」手上持有的舊股票。你買股票的錢是流進「賣方」口袋，企業這時一毛錢也拿不到。</li>
-          </ul>
-          <h4>2. 觀念澄清：利息 vs. 股利</h4>
-          <ul>
-            <li><strong>利息（Interest）：</strong>你把錢借給銀行或買債券，不論企業今年賺不賺錢，都必須固定支付給你的代價。</li>
-            <li><strong>股利（Dividend）：</strong>你身為「公司股東」，公司今年大賺錢後分享給你的紅利（配息/配股）。如果虧錢，公司可以決定不發股利。</li>
-          </ul>
-          <h4>3. 實戰解析：iPhone 推出時，現金與股票如何流動？</h4>
-          <p>當 Apple 宣布推出新款 iPhone 時，不僅是消費者買手機，更是一場龐大的跨國金錢流動：（詳見上方表格）</p>
-          <blockquote><strong>邏輯修正提醒：</strong>股價反映的是企業長期的價值成長。長線投資人（包含大盤型 ETF 持有者）並非在玩「低買高賣、尋找接盤俠」的零和遊戲，而是透過持續持有，與全球頂尖企業共享長期營運所帶來的利潤與資產增值。</blockquote>
+        <div class="callout">
+          <div class="callout-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div class="callout-content">
+            <h4>編輯核心心法</h4>
+            <p>股票的本質從未改變 —— 它是企業家募集資金的工具，也是一般人共享社會經濟進步成果的橋樑。只要人類科技與文明在進步，代表頂尖企業集合的大盤，長線趨勢就會持續上升。</p>
+          </div>
         </div>
-      </details>
-    </div>
-  </div>
-</section>
 
-<!-- ===== 第三章 資產配置 ===== -->
-<section id="allocation">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">第三章 · 從定存到投資</span>
-      <h2>理性的資產配置與風險認知</h2>
-      <p class="lead">沒有最完美的工具，只有最適合當下情境的配置。定存與 ETF 各司其職，把資金全押任何一方都不理智。</p>
-    </div>
-
-    <div class="panel reveal">
-      <h3 style="margin-bottom:12px">銀行定存 vs. 大盤型 ETF</h3>
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr><th>比較項目</th><th>銀行定存</th><th>大盤型 ETF（如 0050, VOO）</th></tr></thead>
-          <tbody>
-            <tr><td>主要功能</td><td>資產保本、防禦風險、隨時動用</td><td>資產增值、對抗通膨、參與經濟成長</td></tr>
-            <tr><td>預期報酬</td><td>固定利息（約 1%~2%，波動極小）</td><td>浮動報酬（長期年化歷史平均約 7%~10%）</td></tr>
-            <tr><td>最大風險</td><td>購買力被通膨侵蝕（慢性縮水）</td><td>短期市場波動劇烈，可能帳面虧損</td></tr>
-            <tr><td>變現速度</td><td>極快（隨時解約現領）</td><td>快（賣出後需等兩個交易日撥款）</td></tr>
-            <tr><td>心理壓力</td><td>極低（本金看得到、不變）</td><td>中至高（需忍受上下起伏）</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 style="margin:24px 0 10px">哪些情況你「必須」優先選定存？</h3>
-      <ul class="klist">
-        <li><span class="dot">1</span><span><b>緊急預備金</b>　至少準備 3~6 個月生活費，失業、生病、急需現金時能隨時動用，不必在股市大跌時忍痛賣股。</span></li>
-        <li><span class="dot">2</span><span><b>短期即將動用的錢</b>　1~3 年內要付的頭期款、結婚、買車、學費，絕不能承受任何短期虧損，務必放定存。</span></li>
-        <li><span class="dot">3</span><span><b>無法承受帳面虧損的保守心態</b>　若下跌 10% 會讓你焦慮到失眠，那定存的安定感對你就是無價的。</span></li>
-      </ul>
-
-      <div class="callout warn">
-        <div class="ct">⚠️ 市場波動風險提示</div>
-        <p>大盤型 ETF 長期回報優異，但短期內（一到兩年）仍有下跌 20% 甚至 30% 以上的風險（如 2008 金融海嘯、2022 全球升息年）。投入 ETF 的資金必須是「短期內用不到的閒錢」，並做好長期抗戰的心理準備。</p>
-      </div>
-
-      <h3 style="margin:24px 0 10px">深入底層：ETF 發行商的 3 大獲利模式</h3>
-      <p style="color:var(--ink-2);font-size:.97rem;margin-bottom:8px">他們是「開賭場的服務提供者」，不是「賭客」，追求規模經濟與旱澇保收：</p>
-      <div class="grid g3">
-        <div class="card reveal"><div class="ico">📊</div><h3>內扣管理費</h3><p>最主要收入，從淨值每天微幅扣除（如 VOO 每年 0.03%）。大漲時暴增，大跌時照收，絕不虧損。</p></div>
-        <div class="card reveal"><div class="ico">🤝</div><h3>證券借貸收入</h3><p>手上持有大量現股，依法借給做空機構，收取借券利息，增加額外營收。</p></div>
-        <div class="card reveal"><div class="ico">🔄</div><h3>換股交易回饋</h3><p>定期調整成分股時資金規模龐大，與合作券商產生手續費折讓或分潤。</p></div>
-      </div>
-
-      <details class="expand">
-        <summary><span class="badge">原文</span> 展開第三章完整內容 <span class="chev">⌄</span></summary>
-        <div class="full">
-          <p>在理財的世界裡，沒有最完美的工具，只有最適合當下情境的配置。定存與 ETF 各司其職，盲目地將資金全數投入任何一方都是不理智的。</p>
-          <h4>2. 哪些情況下，你「必須」優先考慮定存？</h4>
-          <p>這篇教學並非 ETF 的瘋狂信徒推廣文，我們必須客觀承認定存的不可替代性。以下三種情況，你應優先選擇定存：</p>
-          <ol>
-            <li><strong>緊急預備金：</strong>建議至少準備 3 到 6 個月的生活費放在定存。當遇到失業、意外生病或急需現金時，這筆錢能隨時動用，你不需要迫使自己在股市大跌時忍痛割肉賣股票。</li>
-            <li><strong>短期即將動用的資金：</strong>如果您預計在 1 到 3 年內要支付買房頭期款、結婚基金、買車或子女學費，這筆資金「絕對不能承受任何短期虧損風險」，務必放在定存。</li>
-            <li><strong>無法承受帳面虧損的保守心態：</strong>投資因人而異。如果股市下跌 10% 會讓您焦慮到無法入睡、嚴重影響生活品質，那麼定存提供的安定感對您而言就是無價的。</li>
-          </ol>
-          <h4>3. ETF 的市場波動風險提示</h4>
-          <p>必須特別提醒新手：<strong>雖然大盤型 ETF 長期回報優異，但短期內（如一到兩年內）仍有下跌 20% 甚至 30% 以上的風險。</strong>（例如：2008 年金融海嘯、2022 年全球央行激烈升息年）。因此，投入 ETF 的資金必須是「短期內用不到的閒錢」，並做好長期抗戰的心理準備。</p>
-          <h4>4. 深入底層：ETF 發行商的 3 大獲利模式</h4>
-          <p>很多人會問：「既然大盤長期看漲，為什麼發行商（如 Vanguard、元大）不把錢全拿去自己投資，而是要開一檔 ETF 幫別人管理？」因為他們是「開賭場的服務提供者」，不是「賭客」，他們的獲利模式追求的是規模經濟與旱澇保收：</p>
-          <ol>
-            <li><strong>內扣管理費：</strong>這是發行商最主要的收入。這筆費用是從 ETF 淨值中每天微幅扣除（例如 VOO 每年扣 0.03%）。當大盤大漲，資產規模變大，收到的管理費會暴增；即便大盤大跌，發行商依然照常按比例收費，絕不會虧損。</li>
-            <li><strong>證券借貸收入：</strong>發行商手裡持有大量的企業現股，他們可以依法將這些股票借給市場上的做空機構，並從中收取借券利息，增加額外營收。</li>
-            <li><strong>換股交易回饋：</strong>當 ETF 定期調整成分股時，由於資金規模極其龐大，與合作券商之間會產生手續費折讓或分潤。</li>
-          </ol>
-          <blockquote>
-            <strong>為什麼不把自有資金全部拿去賭股市？</strong><br>
-            ・<strong>開賭場比當賭客穩健：</strong>自有資金投資大盤若遇股災會面臨虧損；而當發行商，股災時僅是管理費少收，公司依然穩健營運。<br>
-            ・<strong>需要穩定的營運現金流：</strong>發行商需支付經理人薪資、全球合規律師費、IT 系統維護。若資金全套在股市，遇到金融海嘯可能引發流動性危機。<br>
-            ・<strong>法規的嚴格限制：</strong>全球金融監管機構（如台灣金管會、美國 SEC）對金融機構的自有資金投資上限有極嚴格的限制，強制要求其持有大量低風險資產（如美國國債），絕不允許全倉押注股市。
-          </blockquote>
-          <p style="margin-top:14px">參考資料：</p>
-          <ul>
-            <li><a href="https://smart.businessweekly.com.tw/Reading/IndepArticle.aspx?id=6007940" target="_blank" rel="noopener">Smart 智富 ETF 研究室</a></li>
-            <li><a href="https://www.fsc.gov.tw/ch/home.jsp?id=96&parentpath=0,2&mcustomize=news_view.jsp&dataserno=202403270001&dtable=News" target="_blank" rel="noopener">金管會：ETF 並非穩賺不賠商品，投資前應先瞭解商品特性及注意風險</a></li>
-          </ul>
+        <!-- 展開完整原文 (Accordion) -->
+        <button class="accordion-btn" data-target="full-text-1">
+          <span class="btn-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            深入了解
+            <span class="badge">完整版</span>
+          </span>
+          <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        
+        <div class="accordion-content" id="full-text-1">
+          <div class="full-text">
+            <p>在開始買賣之前，我們必須先知道「股票」是怎麼來的。股票的誕生是人類金融史上最偉大的創新之一，它成功將「個人的冒險資本」轉化為「集體的社會財富」。</p>
+            <h4>1. 股票的起源：大航海時代與海上冒險（15-17世紀）</h4>
+            <p>在 16 世紀末，歐洲掀起了前往亞洲尋找香料（胡椒、肉桂）的狂熱。當時一艘商船只要能平安返航，帶回的香料就能獲得數倍暴利。</p>
+            <ul>
+              <li><strong>痛點：</strong>海上航行面臨風暴、海盜等極高風險，「船沉了，商人就破產了」。且建造大船需龐大資金，單一商人難以負擔。</li>
+              <li><strong>世界第一家股份公司（1602年）：</strong>荷蘭人創立了「荷蘭東印度公司」（VOC），向全荷蘭國民募集資金，發行紙質的「股份憑證」。這開創了「有限責任」與「利益共享」機制 —— 船沉了，投資人最多損失買股票的錢；成功返航，則依持股比例分紅。</li>
+              <li><strong>世界第一家證券交易所（1611年）：</strong>股票發行後，投資人有變現需求。荷蘭阿姆斯特丹成立了世界第一家證券交易所，股票開始有了「市場價格」並允許自由轉讓。</li>
+            </ul>
+            <h4>2. 投機泡沫與法規誕生（18-19世紀）</h4>
+            <ul>
+              <li><strong>南海與密西西比泡沫（1720年）：</strong>英國與法國的公司利用貿易壟斷權瘋狂吹捧獲利前景，引發投機狂熱。連科學家牛頓也參與其中並留下名言：「我能計算天體的運行，卻無法計算人類的瘋狂。」隨後英國通過《泡沫法案》嚴格限制公司成立，股市沉寂百年。</li>
+              <li><strong>工業革命與華爾街崛起：</strong>1792 年，24 名經紀人在紐約華爾街簽署「梧桐樹協議」，成為紐約證券交易所（NYSE）前身。19 世紀造鐵路、採礦的龐大資金需求，讓華爾街正式成為全球金融中心。</li>
+            </ul>
+            <h4>3. 現代股市建立與全民大航海時代（20世紀至今）</h4>
+            <ul>
+              <li><strong>1929年大蕭條與監管：</strong>股市過度槓桿引發大崩盤後，美國在 1934 年成立證券交易委員會（SEC），實施嚴格的資訊揭露制度，奠定「公平、公正、公開」基石。</li>
+              <li><strong>電子化與指數化：</strong>1971 年納斯達克（NASDAQ）成立；1976 年先鋒集團（Vanguard）創辦人約翰·柏格推出世界第一檔追蹤 S&P 500 的指數基金，提倡「買下整個市場」，改變了長線投資觀念。</li>
+            </ul>
+            <blockquote>股票的本質從未改變 —— 它是企業家募集資金的工具，也是一般人共享社會經濟進步成果的橋樑。只要人類科技與文明在進步，代表頂尖企業集合的大盤，長線趨勢就會持續上升。</blockquote>
+          </div>
         </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 第四章 主流 ETF ===== -->
-<section id="etf">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">第四章 · 主流 ETF 大解密</span>
-      <h2>新手該認識的 3 檔大盤標的</h2>
-      <p class="lead">不要總想著一夕暴富炒短線。老老實實買進參與整體經濟成長的「大盤指數標的」，才是勝率最高的策略。</p>
-    </div>
-
-    <div class="grid g3" style="margin-bottom:18px">
-      <div class="card reveal" style="border-top:4px solid #22c55e">
-        <div class="ico">🇹🇼</div>
-        <h3>0050　元大台灣50</h3>
-        <p style="margin:6px 0"><b>追蹤：</b>台股市值前 50 大企業</p>
-        <p style="color:var(--g-700)"><b>✅ 優點：</b>一網打盡台灣護國神山群，簡單透明。</p>
-        <p style="color:#b45309"><b>⚠️ 風險：</b>台積電權重過高（常超過 50%）。</p>
-        <p style="margin-top:8px;font-size:.9rem"><b>適合：</b>偏好在地、看好台灣半導體、不想換匯的新手。</p>
       </div>
-      <div class="card reveal" style="border-top:4px solid #0ea5e9">
-        <div class="ico">🇺🇸</div>
-        <h3>VOO　Vanguard 標普500</h3>
-        <p style="margin:6px 0"><b>追蹤：</b>美股前 500 大頂尖企業</p>
-        <p style="color:var(--g-700)"><b>✅ 優點：</b>網羅全球最強 500 巨頭，行業分散、長線穩健。</p>
-        <p style="color:#b45309"><b>⚠️ 風險：</b>需複委託或海外券商，有匯率風險。</p>
-        <p style="margin-top:8px;font-size:.9rem"><b>適合：</b>追求最穩健長線增值、佈局全球第一大經濟體的人。</p>
-      </div>
-      <div class="card reveal" style="border-top:4px solid #8b5cf6">
-        <div class="ico">🚀</div>
-        <h3>QQQ　Invesco 納斯達克100</h3>
-        <p style="margin:6px 0"><b>追蹤：</b>納斯達克前 100 大非金融企業</p>
-        <p style="color:var(--g-700)"><b>✅ 優點：</b>集中科技與 AI 龍頭，長線回報驚人。</p>
-        <p style="color:#b45309"><b>⚠️ 風險：</b>高度集中科技業，空頭跌幅明顯大於 VOO。</p>
-        <p style="margin-top:8px;font-size:.9rem"><b>適合：</b>能承受較大波動、極度看好科技與 AI 的新手。</p>
-      </div>
-    </div>
+    </section>
 
-    <details class="expand reveal">
-      <summary><span class="badge">原文</span> 展開第四章完整比較表 <span class="chev">⌄</span></summary>
-      <div class="full">
-        <p>新手不要總想著一夕暴富炒短線，老老實實買進參與整體經濟成長的「大盤指數標的」，才是勝率最高的策略。</p>
-        <div class="tbl-wrap" style="margin-top:10px">
+    <!-- ===== 第二章 商業本質 ===== -->
+    <section id="business">
+      <div class="section-header scroll-fade-in">
+        <span class="section-kicker">第二章 · 商業的本質與現金流動</span>
+        <h2>買股票到底是在買什麼？</h2>
+        <p class="lead">買股票就像跟朋友合資開雞排店。你出資 10 萬元，朋友給你 10% 股份憑證，大賺時分紅。你不用會做生意，頂尖企業會幫你賺錢。</p>
+      </div>
+
+      <div class="summary-panel scroll-fade-in">
+        <h3 style="margin-bottom: 16px;">💡 3 個新手最常混淆的觀念</h3>
+        
+        <div class="clarity-grid">
+          <div class="clarity-card">
+            <div class="clarity-card-header">
+              <svg class="clarity-icon-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <h4>你買股票的錢，是給公司嗎？</h4>
+            </div>
+            <p><b>IPO/增資時：</b> 資金直接流入公司帳戶用於營運。<br><b>一般股市交易：</b> 你買的股票是其他投資人的「舊股票」，錢是流向「賣方」口袋，企業這時一毛錢也拿不到。</p>
+          </div>
+          
+          <div class="clarity-card">
+            <div class="clarity-card-header">
+              <svg class="clarity-icon-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              <h4>利息 vs. 股利</h4>
+            </div>
+            <p><b>利息 (Interest)：</b> 借錢給銀行或買債券，不論賺賠公司都必須固定支付給你的代價。<br><b>股利 (Dividend)：</b> 你是公司股東，大賺時分享紅利；如果虧錢，公司可以決定不發股利。</p>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: 12px;">📈 實戰解析：iPhone 推出時，金流如何流動？</h3>
+        <div class="table-container">
           <table>
-            <thead><tr><th>ETF 代號與名稱</th><th>追蹤什麼市場</th><th>優點</th><th>缺點與風險</th><th>適合什麼樣的新手</th></tr></thead>
+            <thead>
+              <tr>
+                <th>參與角色</th>
+                <th>動作</th>
+                <th>現金流向</th>
+                <th>股票/資產變動</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td>元大台灣50 (0050)</td><td>台灣股市市值前 50 大的頂尖企業。</td><td>一網打盡台灣最賺錢的護國神山群。簡單透明，完全與台灣經濟成長綁定。</td><td>台積電單一公司權重過高（常超過50%），受單一企業股價波動影響極大。</td><td>偏好在地投資、看好台灣半導體與科技高成長，且不想處理換匯的新手。</td></tr>
-              <tr><td>Vanguard 標普500 (VOO)</td><td>美國股市前 500 大頂尖大型企業。</td><td>網羅全球最強的 500 家巨頭，行業分散極度均勻，歷史長線走勢極為穩健。</td><td>需透過複委託或海外券商購買，存在匯率波動風險。</td><td>追求最穩健、最長線資產增值，希望將資產佈局在全球第一大經濟體的人。</td></tr>
-              <tr><td>Invesco 納斯達克100 (QQQ)</td><td>美國納斯達克上市的前 100 大非金融企業。</td><td>爆發力極強！集中全球最頂尖科技與 AI 龍頭，長線歷史回報率驚人。</td><td>產業高度集中於科技業，科技股波動劇烈，估值修正時（如空頭市場）跌幅顯著大於 VOO。</td><td>能承受較大心理帳面波動、極度看好全球科技與 AI 劇烈發展的新手。</td></tr>
+              <tr>
+                <td>消費者</td>
+                <td>購買新手機</td>
+                <td>💸 流向 Apple 與台灣供應鏈</td>
+                <td>❌ 無股票變動</td>
+              </tr>
+              <tr>
+                <td>投資人/機構</td>
+                <td>看好新機前景</td>
+                <td>💸 流向證券市場（買方）</td>
+                <td>📈 資金推升市場整體估值</td>
+              </tr>
+              <tr>
+                <td>Apple 企業</td>
+                <td>賺取手機利潤</td>
+                <td>💸 支付供應鏈、發股利、買庫藏股</td>
+                <td>📉 市面流通股數減少（股票內在價值變高）</td>
+              </tr>
+              <tr>
+                <td>長線投資人/ETF</td>
+                <td>持續長期持有</td>
+                <td>💰 獲得股利分配或資產淨值增長</td>
+                <td>🔄 與企業共享長期的獲利與成長成果</td>
+              </tr>
             </tbody>
           </table>
         </div>
+
+        <div class="callout">
+          <div class="callout-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div class="callout-content">
+            <h4>邏輯修正提醒</h4>
+            <p>股價反映的是企業長期的價值成長。長線投資人（包含大盤型 ETF 持有者）並非在玩「低買高賣、尋找接盤俠」的零和遊戲，而是透過持續持有，與全球頂尖企業共享長期營運所帶來的利潤與資產增值。</p>
+          </div>
+        </div>
+
+        <!-- 展開完整原文 (Accordion) -->
+        <button class="accordion-btn" data-target="full-text-2">
+          <span class="btn-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            深入了解
+            <span class="badge">完整版</span>
+          </span>
+          <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        
+        <div class="accordion-content" id="full-text-2">
+          <div class="full-text">
+            <p>你可以把買股票想像成「跟朋友合資開雞排店」。你出資 10 萬元，朋友給你一張收據，寫著你擁有這家店 10% 的股份。月底結帳淨賺 5 萬元，朋友依據 10% 股份分給你 5,000 元。這就是股票最迷人的地方：你不需要懂怎麼做生意，只要購買股票成為微型股東，全球頂尖菁英就會幫你賺錢。</p>
+            <p>很多新手常混淆幾個觀念，我們一次釐清：</p>
+            <h4>1. 觀念澄清：你買股票的錢，真的是給公司嗎？</h4>
+            <ul>
+              <li><strong>初次上市（IPO）或增資：</strong>只有在這時候，投資人掏出的現金才會直接流進企業的銀行帳戶，企業因此獲得發展資金。</li>
+              <li><strong>一般股市交易（次級市場）：</strong>你現在天天在 App 上買的 Apple (AAPL) 或台積電 (2330) 股票，其實是「其他投資人」手上持有的舊股票。你買股票的錢是流進「賣方」口袋，企業這時一毛錢也拿不到。</li>
+            </ul>
+            <h4>2. 觀念澄清：利息 vs. 股利</h4>
+            <ul>
+              <li><strong>利息（Interest）：</strong>你把錢借給銀行或買債券，不論企業今年賺不賺錢，都必須固定支付給你的代價。</li>
+              <li><strong>股利（Dividend）：</strong>你身為「公司股東」，公司今年大賺錢後分享給你的紅利（配息/配股）。如果虧錢，公司可以決定不發股利。</li>
+            </ul>
+            <h4>3. 實戰解析：iPhone 推出時，現金與股票如何流動？</h4>
+            <p>當 Apple 宣布推出新款 iPhone 時，不僅是消費者買手機，更是一場龐大的跨國金錢流動：（詳細對照見上方表格）</p>
+            <blockquote><strong>邏輯修正提醒：</strong> 股價反映的是企業長期的價值成長。長線投資人（包含大盤型 ETF 持有者）並非在玩「低買高賣、尋找接盤俠」的零和遊戲，而是透過持續持有，與全球頂尖企業共享長期營運所帶來的利潤與資產增值。</blockquote>
+          </div>
+        </div>
       </div>
-    </details>
-  </div>
-</section>
+    </section>
 
-<!-- ===== 第五章 實戰步驟 ===== -->
-<section id="practice">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">第五章 · 實戰演練</span>
-      <h2>用「定期定額」邁出第一步</h2>
-      <p class="lead">懂了理論，不踏出第一步就永遠只是看熱鬧。跟著這 7 步，買進人生第一筆 ETF。</p>
-    </div>
-
-    <div class="steps">
-      <div class="step reveal"><div><h4>開戶與綁定</h4><p>選信譽良好的大型券商（國泰、富邦、元大等），備妥雙證件線上開戶，並綁定銀行帳戶作為交割戶。</p></div></div>
-      <div class="step reveal"><div><h4>資金準備（入金）</h4><p>扣款日前，把每月要投資的閒錢（如 3,000 或 5,000 元，務必是短期用不到的錢）轉入銀行交割帳戶。</p></div></div>
-      <div class="step reveal"><div><h4>找到「定期定額」專區</h4><p>打開券商 App，點「台股」或「美股」，找到「定期定額」或「自動投資」的功能入口。</p></div></div>
-      <div class="step reveal"><div><h4>搜尋你要買的標的</h4><p>在搜尋欄輸入代號（台股 <code>0050</code>、美股 <code>VOO</code>），點選進入申購畫面。</p></div></div>
-      <div class="step reveal"><div><h4>設定金額與日期</h4><p>輸入每月投資金額（許多券商台股最低 100 元），勾選自動扣款日（如每月 8、18、28 號，可複選分散天數）。</p></div></div>
-      <div class="step reveal"><div><h4>確認並送出申購</h4><p>檢查金額、日期與代號無誤後按「確認申購」，輸入交易密碼。你的自動財富增值計劃正式啟動！</p></div></div>
-      <div class="step reveal"><div><h4>選擇扣款幣別<span class="opt">美股專屬</span></h4><p>想省力選「台幣扣款」，券商自動換匯；想精打細算選「外幣扣款」，趁匯率低點自行換好美元。</p></div></div>
-    </div>
-
-    <div class="callout reveal" style="margin-top:22px">
-      <div class="ct">🏆 最後的叮嚀</div>
-      <p>市場上最終的贏家，往往不是最聰明、最會預測高低點的人，而是最能堅持紀律、在波動中依然不中斷扣款的人。定期定額、長線持有，讓時間成為你最好的朋友。</p>
-    </div>
-
-    <details class="expand reveal">
-      <summary><span class="badge">原文</span> 展開第五章完整步驟說明 <span class="chev">⌄</span></summary>
-      <div class="full">
-        <p>懂了理論，不踏出第一步就永遠只是看熱鬧。以下教你如何用最省力的「定期定額」買進人生第一筆 ETF：</p>
-        <ol>
-          <li><strong>開戶與綁定：</strong>選擇一家信譽良好的大型證券商（如國泰、富邦、元大等），準備好雙證件在線上 APP 即可完成證券戶開立，並綁定好銀行帳戶作為未來的扣款交割戶。</li>
-          <li><strong>資金準備（入金）：</strong>在設定的扣款日之前，將你每個月預計投資的閒錢（例如：3,000 元或 5,000 元，務必是短期內用不到的錢）轉帳存入你的銀行交割帳戶中。</li>
-          <li><strong>尋找定期定額功能專區：</strong>打開證券商 APP，點選功能選單中的「台股」或「美股」標籤，接著在畫面中找到「定期定額」或「自動投資」的功能入口。</li>
-          <li><strong>搜尋你想買的 ETF 標的：</strong>在搜尋欄位直接輸入你想購買的代號（例如：台股輸入 0050，美股輸入 VOO），點選該標的進入申購畫面。</li>
-          <li><strong>設定扣款金額與日期：</strong>輸入你每個月打算投資的金額（目前許多券商台股定期定額最低只要 100 元），並勾選每個月要自動扣款的日期（例如每月的 8 號、18 號或 28 號，可複選以分散天數）。</li>
-          <li><strong>確認並送出申購：</strong>仔細檢查扣款金額、日期與 ETF 代號無誤後，按下「確認申購」，並輸入交易密碼。恭喜你，你的專屬自動財富增值計劃正式啟動了！</li>
-          <li><strong>(美股專屬) 選擇扣款幣別：</strong>若申購美股 ETF，系統會讓你選擇「台幣」或「外幣」扣款。想追求極致省力，可選「台幣扣款」，交由券商自動依當下匯率換匯；若想精打細算，則可選「外幣扣款」，平時趁匯率低點自行換好美元存入外幣交割帳戶中。</li>
-        </ol>
-        <blockquote><strong>最後的叮嚀：</strong>投資市場上最終的贏家，往往不是最聰明、最會預測高低點的人，而是最能堅持紀律、在波動中依然不中斷扣款的人。定期定額、長線持有，讓時間成為你最好的朋友。</blockquote>
+    <!-- ===== 第三章 資產配置 ===== -->
+    <section id="allocation">
+      <div class="section-header scroll-fade-in">
+        <span class="section-kicker">第三章 · 從定存到投資</span>
+        <h2>理性的資產配置與風險認知</h2>
+        <p class="lead">沒有完美的工具，只有最適合當下情境的配置。定存與 ETF 各司其職，盲目全押某方是不理智的。</p>
       </div>
-    </details>
-  </div>
-</section>
 
-<!-- ===== 延伸閱讀 ===== -->
-<section id="more">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">延伸閱讀 · 客觀觀點推薦</span>
-      <h2>想更深入？這 4 個資源值得收藏</h2>
+      <div class="summary-panel scroll-fade-in">
+        <h3 style="margin-bottom: 18px;">⚖️ 銀行定存 vs. 大盤型 ETF 客觀比較</h3>
+        
+        <div class="versus-container">
+          <div class="versus-card versus-defend">
+            <div class="versus-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <h4>銀行定存</h4>
+              <span class="versus-badge">資產保本防禦</span>
+            </div>
+            <ul class="versus-list">
+              <li>
+                <label>主要功能</label>
+                <span>資產保本、防禦風險、隨時動用</span>
+              </li>
+              <li>
+                <label>預期報酬</label>
+                <span>固定利息（約 1% ~ 2% 波動極小）</span>
+              </li>
+              <li>
+                <label>最大風險</label>
+                <span>購買力被通膨侵蝕（慢性資產縮水）</span>
+              </li>
+              <li>
+                <label>變現速度</label>
+                <span>極快（隨時解約即可現領）</span>
+              </li>
+              <li>
+                <label>心理壓力</label>
+                <span>極低（看得到資產本金不變）</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="versus-card versus-attack">
+            <div class="versus-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <h4>大盤型 ETF</h4>
+              <span class="versus-badge">資產增值進攻</span>
+            </div>
+            <ul class="versus-list">
+              <li>
+                <label>主要功能</label>
+                <span>資產增值、對抗通膨、參與經濟成長</span>
+              </li>
+              <li>
+                <label>預期報酬</label>
+                <span>浮動報酬（長期年化歷史平均約 7% ~ 10%）</span>
+              </li>
+              <li>
+                <label>最大風險</label>
+                <span>短期市場波動劇烈，可能面臨帳面虧損</span>
+              </li>
+              <li>
+                <label>變現速度</label>
+                <span>快（股市交易賣出後需等兩個交易日撥款）</span>
+              </li>
+              <li>
+                <label>心理壓力</label>
+                <span>中至高（需忍受市場上下起伏的帳面變動）</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: 12px;">🚨 哪些情況下，你「必須」優先考慮定存？</h3>
+        <div class="scenario-grid">
+          <div class="scenario-card">
+            <h4>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              1. 緊急預備金
+            </h4>
+            <p>建議準備 3 到 6 個月的生活費放定存。當遇失業或急需現金時，能隨時動用，不需被迫在股災時割肉賣股票。</p>
+          </div>
+          <div class="scenario-card">
+            <h4>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              2. 短期需動用的資金
+            </h4>
+            <p>預計 1 到 3 年內要支付的買房頭期款、結婚基金、學費等，絕不能承受任何短期虧損風險，務必放定存。</p>
+          </div>
+          <div class="scenario-card">
+            <h4>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              3. 保守的理財心態
+            </h4>
+            <p>投資因人而異。若股市下跌 10% 會讓你無比焦慮、影響生活，那麼定存提供的本金安全感對你而言就是無價的。</p>
+          </div>
+        </div>
+
+        <div class="callout warn" style="margin-top: 20px;">
+          <div class="callout-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="callout-content">
+            <h4>ETF 的市場波動風險提示</h4>
+            <p>雖然大盤型 ETF 長期回報優異，但短期內（如一到兩年內）仍有下跌 20% 甚至 30% 以上的風險（例如：2008年金融海嘯、2022年全球央行激烈升息年）。投入 ETF 的資金必須是「短期內用不到的閒錢」，並做好長期持有抗戰的準備。</p>
+            <div style="margin-top: 12px; font-size: 0.88rem; border-top: 1px dashed rgba(239, 68, 68, 0.2); padding-top: 10px;">
+              <span style="font-weight: bold; color: var(--warning-text); display: block; margin-bottom: 6px;">💡 官方指引與防範提示：</span>
+              <ul style="margin: 0; padding-left: 18px; line-height: 1.6; color: var(--text-muted);">
+                <li><a href="https://www.fsc.gov.tw/ch/home.jsp?id=96&parentpath=0,2&mcustomize=news_view.jsp&dataserno=202403270001&dtable=News" target="_blank" rel="noopener" style="color: var(--warning-text); text-decoration: underline; font-weight: 500;">金管會提醒：ETF 並非穩賺不賠商品，投資前應先瞭解商品特性及注意風險</a></li>
+                <li><a href="https://smart.businessweekly.com.tw/Reading/IndepArticle.aspx?id=6007940" target="_blank" rel="noopener" style="color: var(--warning-text); text-decoration: underline; font-weight: 500;">Smart智富ETF研究室：0050、0056歷史熊市回檔多少？</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin: 28px 0 14px;">🏢 深入底層：ETF 發行商的 3 大獲利模式</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">發行商（如元大、Vanguard）是「開賭場的服務提供者」而非「賭客」，獲利追求的是規模經濟與旱澇保收：</p>
+        <div class="grid g-3">
+          <div class="card" style="padding: 20px;">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3 style="font-size: 1.05rem;">1. 內扣管理費</h3>
+            <p style="font-size: 0.9rem;">最主要收入。從 ETF 淨值中每天微幅扣除。大盤漲、規模變大時管理費暴增；大盤大跌時依然照收，旱澇保收。</p>
+          </div>
+          
+          <div class="card" style="padding: 20px;">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 style="font-size: 1.05rem;">2. 證券借貸收入</h3>
+            <p style="font-size: 0.9rem;">發行商手裡持有龐大的企業股票，依法將這些現股借給做空機構，並從中收取穩定的借券利息，賺取額外營收。</p>
+          </div>
+          
+          <div class="card" style="padding: 20px;">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
+            </div>
+            <h3 style="font-size: 1.05rem;">3. 換股交易回饋</h3>
+            <p style="font-size: 0.9rem;">當 ETF 定期調整成分股時，因交易規模極其龐大，與合作券商之間會產生可觀的手續費折讓、分潤與回饋。</p>
+          </div>
+        </div>
+
+        <!-- 展開完整原文 (Accordion) -->
+        <button class="accordion-btn" data-target="full-text-3">
+          <span class="btn-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            深入了解
+            <span class="badge">完整版</span>
+          </span>
+          <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        
+        <div class="accordion-content" id="full-text-3">
+          <div class="full-text">
+            <p>在理財的世界裡，沒有最完美的工具，只有最適合當下情境的配置。定存與 ETF 各司其職，盲目地將資金全數投入任何一方都是不理智的。</p>
+            <h4>1. 銀行定存 vs. 大盤型 ETF 客觀比較</h4>
+            <p>（詳細項目的比較，請參閱上方雙色對稱比較卡片資訊）</p>
+            <h4>2. 哪些情況下，你「必須」優先考慮定存？</h4>
+            <p>這篇教學並非 ETF 的瘋狂信徒推廣文，我們必須客觀承認定存的不可替代性。以下三種情況，你應優先選擇定存：</p>
+            <ol>
+              <li><strong>緊急預備金：</strong> 建議至少準備 3 到 6 個月的生活費放在定存。當遇到失業、意外生病或急需現金時，這筆錢能隨時動用，你不需要迫使自己在股市大跌時忍痛割肉賣股票。</li>
+              <li><strong>短期即將動用的資金：</strong> 如果您預計在 1 到 3 年內要支付買房頭期款、結婚基金、買車或子女學費，這筆資金「絕對不能承受任何短期虧損風險」，務必放在定存。</li>
+              <li><strong>無法承受帳面虧損的保守心態：</strong> 投資因人而異。如果股市下跌 10% 會讓您焦慮到無法入睡、嚴重影響生活品質，那麼定存提供的安定感對您而言就是無價的。</li>
+            </ol>
+            <h4>3. ETF 的市場波動風險提示</h4>
+            <p>必須特別提醒新手：<strong>雖然大盤型 ETF 長期回報優異，但短期內（如一到兩年內）仍有下跌 20% 甚至 30% 以上的風險。</strong>（例如：2008 年金融海嘯、2022 年全球央行激烈升息年）。因此，投入 ETF 的資金必須是「短期內用不到的閒錢」，並做好長期抗戰的心理準備。</p>
+            <p>相關資訊參考來源：</p>
+            <ul>
+              <li><a href="https://smart.businessweekly.com.tw/Reading/IndepArticle.aspx?id=6007940" target="_blank" rel="noopener">Smart智富ETF研究室</a></li>
+              <li><a href="https://www.fsc.gov.tw/ch/home.jsp?id=96&parentpath=0,2&mcustomize=news_view.jsp&dataserno=202403270001&dtable=News" target="_blank" rel="noopener">金管會提醒ETF並非穩賺不賠商品，投資前應先瞭解商品特性及注意風險</a></li>
+            </ul>
+            <h4>4. 深入底層：ETF 發行商的 3 大獲利模式</h4>
+            <p>很多人會問：「既然大盤長期看漲，為什麼發行商（如 Vanguard、元大）不把錢全拿去自己投資，而是要開一檔 ETF 幫別人管理？」因為他們是「開賭場的服務提供者」，不是「賭客」，他們的獲利模式追求的是規模經濟與旱澇保收：</p>
+            <ol>
+              <li><strong>內扣管理費：</strong> 這是發行商最主要的收入。這筆費用是從 ETF 淨值中每天微幅扣除（例如 VOO 每年扣 0.03%）。當大盤大漲，資產規模變大，收到的管理費會暴增；即便大盤大跌，發行商依然照常按比例收費，絕不會虧損。</li>
+              <li><strong>證券借貸收入：</strong> 發行商手裡持有大量的企業現股，他們可以依法將這些股票借給市場上的做空機構，並從中收取借券利息，增加額外營收。</li>
+              <li><strong>換股交易回饋：</strong> 當 ETF 定期調整成分股時，由於資金規模極其龐大，與合作券商之間會產生手續費折讓或分潤。</li>
+            </ol>
+            <blockquote>
+              <strong>為什麼不把自有資金全部拿去賭股市？</strong><br>
+              * <strong>開賭場比當賭客穩健：</strong> 自有資金投資大盤若遇股災會面臨虧損；而當發行商，股災時僅是管理費少收，公司依然穩健營運。<br>
+              * <strong>需要穩定的營運現金流：</strong> 發行商需支付經理人薪資、全球合規律師費、IT 系統維護。若資金全套在股市，遇到金融海嘯可能引發流動性危機。<br>
+              * <strong>法規的嚴格限制：</strong> 全球金融監管機構（如台灣金管會、美國 SEC）對金融機構 of 自有資金投資上限有極嚴格的限制，強制要求其持有大量低風險資產（如美國國債），絕不允許全倉押注股市。
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 第四章 主流 ETF ===== -->
+    <section id="etf">
+      <div class="section-header scroll-fade-in">
+        <span class="section-kicker">第四章 · 主流 ETF 大解密</span>
+        <h2>新手必知的三大主流標的</h2>
+        <p class="lead">老老實實買進參與經濟成長的大盤指數標的，是勝率最高的策略。請移動游標體驗 3D 卡片效果。</p>
+      </div>
+
+      <!-- 3D 懸浮卡片 -->
+      <div class="tilt-card-grid scroll-fade-in">
+        <!-- 0050 -->
+        <div class="tilt-card tilt-card-0050">
+          <div class="tilt-card-content">
+            <div class="ico">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M21 12H3M12 3v18"/></svg>
+            </div>
+            <h3>元大台灣50 (0050)</h3>
+            <ul class="detail-list">
+              <li>
+                <strong>追蹤市場</strong>
+                台灣股市市值前 50 大的頂尖企業。
+              </li>
+              <li class="pros">
+                <strong>最大優點</strong>
+                一網打盡護國神山群，台幣扣款免換匯。
+              </li>
+              <li class="cons">
+                <strong>最大風險</strong>
+                台積電權重極高（常超 50%）受單一公司影響大。
+              </li>
+            </ul>
+            <div class="target">
+              <strong>適合人群</strong>
+              看好台灣科技與半導體發展，且不想處理換匯的新手。
+            </div>
+          </div>
+        </div>
+
+        <!-- VOO -->
+        <div class="tilt-card tilt-card-voo">
+          <div class="tilt-card-content">
+            <div class="ico">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+            </div>
+            <h3>Vanguard 標普500 (VOO)</h3>
+            <ul class="detail-list">
+              <li>
+                <strong>追蹤市場</strong>
+                美國股市前 500 大大型頂尖巨頭。
+              </li>
+              <li class="pros">
+                <strong>最大優點</strong>
+                網羅全球最強五百大企業，極度分散且走勢穩健。
+              </li>
+              <li class="cons">
+                <strong>最大風險</strong>
+                需使用海外券商或複委託，有匯率波動風險。
+              </li>
+            </ul>
+            <div class="target">
+              <strong>適合人群</strong>
+              追求最穩健的長線資產增值，希望佈局全球第一強國的人。
+            </div>
+          </div>
+        </div>
+
+        <!-- QQQ -->
+        <div class="tilt-card tilt-card-qqq">
+          <div class="tilt-card-content">
+            <div class="ico">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Invesco 納斯達克100 (QQQ)</h3>
+            <ul class="detail-list">
+              <li>
+                <strong>追蹤市場</strong>
+                美股納斯達克前 100 大非金融科技龍頭。
+              </li>
+              <li class="pros">
+                <strong>最大優點</strong>
+                科技 AI 爆發力強，歷史長線報酬率驚人。
+              </li>
+              <li class="cons">
+                <strong>最大風險</strong>
+                產業過度集中科技股，修正時波動與跌幅劇烈。
+              </li>
+            </ul>
+            <div class="target">
+              <strong>適合人群</strong>
+              能承受較大帳面起伏，極度看好全球科技與 AI 大變革的新手。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 展開完整比較表 (Accordion) -->
+      <button class="accordion-btn scroll-fade-in" data-target="full-text-4">
+        <span class="btn-label">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          深入了解
+          <span class="badge">完整版</span>
+        </span>
+        <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      
+      <div class="accordion-content" id="full-text-4">
+        <div class="full-text">
+          <p>新手不要總想著一夕暴富炒短線，老老實實買進參與整體經濟成長的「大盤指數標的」，才是勝率最高的策略。</p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ETF 代號與名稱</th>
+                  <th>追蹤什麼市場</th>
+                  <th>優點</th>
+                  <th>缺點與風險</th>
+                  <th>適合什麼樣的新手</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>元大台灣50 (0050)</b></td>
+                  <td>台灣股市市值前 50 大的頂尖企業。</td>
+                  <td>一網打盡台灣最賺錢的護國神山群。簡單透明，完全與台灣經濟成長綁定。</td>
+                  <td>台積電單一公司權重過高（常超過50%），受單一企業股價波動影響極大。</td>
+                  <td>偏好在地投資、看好台灣半導體與科技高成長，且不想處理換匯的新手。</td>
+                </tr>
+                <tr>
+                  <td><b>Vanguard 標普500 (VOO)</b></td>
+                  <td>美國股市前 500 大頂尖大型企業。</td>
+                  <td>網羅全球最強的 500 家巨頭，行業分散極度均勻，歷史長線走勢極為穩健。</td>
+                  <td>需透過複委託或海外券商購買，存在匯率波動風險。</td>
+                  <td>追求最穩健、最長線資產增值，希望將資產佈局在全球第一大經濟體的人。</td>
+                </tr>
+                <tr>
+                  <td><b>Invesco 納斯達克100 (QQQ)</b></td>
+                  <td>美國納斯達克上市的前 100 大非金融企業。</td>
+                  <td>爆發力極強！集中全球最頂尖科技與 AI 龍頭，長線歷史回報率驚人。</td>
+                  <td>產業高度集中於科技業，科技股波動劇烈，估值修正時（如空頭市場）跌幅顯著大於 VOO。</td>
+                  <td>能承受較大心理帳面波動、極度看好全球科技與 AI 劇烈發展的新手。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 第五章 實戰步驟 ===== -->
+    <section id="practice">
+      <div class="section-header scroll-fade-in">
+        <span class="section-kicker">第五章 · 實戰演練</span>
+        <h2>邁出投資的第一步</h2>
+        <p class="lead">懂了理論，不踏出第一步就永遠只是看熱鬧。以下我們將實戰演練分為「通用定期定額步驟」與「國泰證券 App 實戰（以 0050 為例）」兩部分，幫助你快速開始。</p>
+      </div>
+
+      <div class="summary-panel scroll-fade-in">
+        <!-- 第一區塊：通用流程 -->
+        <h3 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          1. 通用定期定額步驟（各券商適用）
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">點選步驟卡片即可打勾標記進度，輔助自己一步步完成申購設定：</p>
+        
+        <div class="stepper">
+          <!-- 步進 1 -->
+          <div class="stepper-item" onclick="toggleStep(this)">
+            <div class="stepper-checkbox">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stepper-content">
+              <h4>步驟 1. 開戶與綁定</h4>
+              <p>選擇一家信譽良好的大型證券商（如富邦、元大、凱基等），準備好身分證與健保卡雙證件，利用線上 App 即可完成證券戶開立，並綁定交割銀行帳戶。</p>
+            </div>
+          </div>
+
+          <!-- 步進 2 -->
+          <div class="stepper-item" onclick="toggleStep(this)">
+            <div class="stepper-checkbox">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stepper-content">
+              <h4>步驟 2. 資金準備（入金）</h4>
+              <p>在約定扣款日之前，將你每個月預計投資的閒錢（例如：3,000 元或 5,000 元，務必是短期內用不到的錢）轉帳存入你的銀行交割帳戶中。</p>
+            </div>
+          </div>
+
+          <!-- 步進 3 -->
+          <div class="stepper-item" onclick="toggleStep(this)">
+            <div class="stepper-checkbox">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stepper-content">
+              <h4>步驟 3. 尋找定期定額功能專區</h4>
+              <p>打開你的證券商 App，在主要功能選單中點選「台股」或「美股」標籤，接著在畫面中找到「定期定額」或「存股/自動投資」功能入口。</p>
+            </div>
+          </div>
+
+          <!-- 步進 4 -->
+          <div class="stepper-item" onclick="toggleStep(this)">
+            <div class="stepper-checkbox">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stepper-content">
+              <h4>步驟 4. 搜尋你想買的 ETF 標的</h4>
+              <p>在搜尋欄位直接輸入你想購買的代號（例如：台股定期定額搜尋 `0050`，美股定期定額搜尋 `VOO`），點選該標的進入申購畫面。</p>
+            </div>
+          </div>
+
+          <!-- 步進 5 -->
+          <div class="stepper-item" onclick="toggleStep(this)">
+            <div class="stepper-checkbox">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stepper-content">
+              <h4>步驟 5. 設定扣款金額與日期</h4>
+              <p>輸入你每個月打算投資的金額（台股最低只要 100 元），並勾選每個月要自動扣款的日期（例如每月的 8 號、18 號或 28 號，可複選以分散天數）。</p>
+            </div>
+          </div>
+
+          <!-- 步進 6 -->
+          <div class="stepper-item" onclick="toggleStep(this)">
+            <div class="stepper-checkbox">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stepper-content">
+              <h4>步驟 6. 確認並送出申購</h4>
+              <p>仔細檢查扣款金額、扣款日期與 ETF 代號無誤後，按下「確認申購」，並輸入交易密碼。恭喜你，你的自動財富增值計劃正式啟動！</p>
+            </div>
+          </div>
+
+          <!-- 步進 7 -->
+          <div class="stepper-item" onclick="toggleStep(this)">
+            <div class="stepper-checkbox">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stepper-content">
+              <h4>步驟 7. 選擇扣款幣別 <span class="tag">美股專屬</span></h4>
+              <p>若申購美股 ETF，可選擇「台幣扣款」（交由券商自動以當下匯率換匯，最省心），或選擇「外幣扣款」（平時趁匯率低點自行換好美元存入外幣交割帳戶）。</p>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--border); margin: 40px 0;">
+
+        <!-- 第二區塊：國泰證券 App 實戰步驟 -->
+        <h3 style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 14h.01M10 14h.01"/></svg>
+          2. 國泰證券 App 實戰（以 0050 為例）
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">國泰證券是目前台灣定期定額非常熱門的選擇，台股定期定額買進手續費享有均一價 <b>1 元</b> 的優惠（優惠已確認延長至 2026 年 12 月 31 日）。以下為在「國泰證券 App」進行定期定額的詳細圖文實戰步驟，點擊圖片可放大檢視：</p>
+
+        <div class="cathay-steps">
+          <!-- 步驟 1 -->
+          <div class="cathay-step">
+            <div class="cathay-step-header">
+              <span>STEP 01</span>
+              <h4>進入定期投資專區</h4>
+            </div>
+            <p>打開並登入「國泰證券 App」，在首頁快捷功能或下方選單中，點選「定期投資」圖示進入存股專區。</p>
+            <div class="cathay-img-box" onclick="openLightbox(this)">
+              <img src="國泰證券0050申請步驟/step1.jpg" alt="國泰步驟 1: 進入定期投資專區">
+            </div>
+            <div class="cathay-img-meta">圖片來源與參考網址：<a href="https://www.cathaysec.com.tw" target="_blank" rel="noopener">國泰證券官方網站</a></div>
+          </div>
+
+          <!-- 步驟 2 -->
+          <div class="cathay-step">
+            <div class="cathay-step-header">
+              <span>STEP 02</span>
+              <h4>搜尋並點選申購標的</h4>
+            </div>
+            <p>在定期投資專區內，點選「申購設定」，選擇台股 0050。或者，切換「台股」或「美股」頁籤，在上方搜尋框輸入您想買的 ETF 代號（如台股 `0050` 或美股 `VOO`），點選該標的進入設定。</p>
+            <div class="cathay-img-box" onclick="openLightbox(this)">
+              <img src="國泰證券0050申請步驟/step2.jpg" alt="國泰步驟 2: 搜尋並點選申購標的">
+            </div>
+            <div class="cathay-img-meta">圖片來源與參考網址：<a href="https://www.cathaysec.com.tw" target="_blank" rel="noopener">國泰證券官方網站</a></div>
+          </div>
+
+          <!-- 步驟 3 -->
+          <div class="cathay-step">
+            <div class="cathay-step-header">
+              <span>STEP 03</span>
+              <h4>設定扣款金額與日期</h4>
+            </div>
+            <p>輸入每期打算投資的金額（台股定期定額每筆最低 100 元起，以百元為單位累加；美股定期定額最低 10 美元起）。並利用「每月交易日」功能，勾選每月 1 號到 31 號之中的任一天或數天作為扣款日。</p>
+            <div class="cathay-img-box" onclick="openLightbox(this)">
+              <img src="國泰證券0050申請步驟/step3.jpg" alt="國泰步驟 3: 設定扣款金額與日期">
+            </div>
+            <div class="cathay-img-meta">圖片來源與參考網址：<a href="https://www.cathaysec.com.tw" target="_blank" rel="noopener">國泰證券官方網站</a></div>
+          </div>
+
+          <!-- 步驟 4 -->
+          <div class="cathay-step">
+            <div class="cathay-step-header">
+              <span>STEP 04</span>
+              <h4>確認申購內容</h4>
+            </div>
+            <p>仔細確認您的 ETF 代號、約定扣款日、金額與手續費（台股買進定期定額手續費為 1 元）無誤後，輸入您的交易密碼，按下「確認申購」即送出申請。</p>
+            <div class="cathay-img-box" onclick="openLightbox(this)">
+              <img src="國泰證券0050申請步驟/step4.jpg" alt="國泰步驟 4: 確認申購內容">
+            </div>
+            <div class="cathay-img-meta">圖片來源與參考網址：<a href="https://www.cathaysec.com.tw" target="_blank" rel="noopener">國泰證券官方網站</a></div>
+          </div>
+
+          <!-- 步驟 5 -->
+          <div class="cathay-step">
+            <div class="cathay-step-header">
+              <span>STEP 05</span>
+              <h4>申請中畫面與扣款準備</h4>
+            </div>
+            <p>等後續申請成功後，務必於扣款日前一天 23:59 前，將足夠的扣款金額存入您綁定的國泰世華銀行交割帳戶中。</p>
+            <div class="cathay-img-box" onclick="openLightbox(this)">
+              <img src="國泰證券0050申請步驟/step5.jpg" alt="國泰步驟 5: 申請中與交割準備">
+            </div>
+            <div class="cathay-img-meta">圖片來源與參考網址：<a href="https://www.cathaysec.com.tw" target="_blank" rel="noopener">國泰證券官方網站</a></div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top: 36px;">
+          <div class="callout-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div class="callout-content">
+            <h4>最後的叮嚀</h4>
+            <p>投資市場上最終的贏家，往往不是最聰明、最會預測高低點的人，而是最能堅持紀律、在波動中依然不中斷扣款的人。定期定額、長線持有，讓時間與複利成為你最好的朋友。</p>
+          </div>
+        </div>
+
+        <!-- 展開完整原文 (Accordion) -->
+        <button class="accordion-btn" data-target="full-text-5">
+          <span class="btn-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            深入了解
+            <span class="badge">完整版</span>
+          </span>
+          <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        
+        <div class="accordion-content" id="full-text-5">
+          <div class="full-text">
+            <p>懂了理論，不踏出第一步就永遠只是看熱鬧。以下教你如何用最省力的「定期定額」買進人生第一筆 ETF：</p>
+            <ol>
+              <li><strong>開戶與綁定：</strong> 選擇一家信譽良好的大型證券商（如國泰、富邦、元大等），準備好雙證件在線上 APP 即可完成證券戶開立，並綁定好銀行帳戶作為未來的扣款交割戶。</li>
+              <li><strong>資金準備（入金）：</strong> 在設定的扣款日之前，將你每個月預計投資的閒錢（例如：3,000 元或 5,000 元，務必是短期內用不到的錢）轉帳存入你的銀行交割帳戶中。</li>
+              <li><strong>尋找定期定額功能專區：</strong> 打開證券商 APP，點選功能選單中的「台股」或「美股」標籤，接著在畫面中找到「定期定額」或「自動投資」的功能入口。</li>
+              <li><strong>搜尋你想買的 ETF 標的：</strong> 在搜尋欄位直接輸入你想購買的代號（例如：台股輸入 0050，美股輸入 VOO），點選該標的進入申購畫面。</li>
+              <li><strong>設定扣款金額與日期：</strong> 輸入你每個月打算投資的金額（目前許多券商台股定期定額最低只要 100 元），並勾選每個月要自動扣款的日期（例如每月的 8 號、18 號或 28 號，可複選以分散天數）。</li>
+              <li><strong>確認並送出申購：</strong> 仔細檢查扣款金額、日期與 ETF 代號無誤後，按下「確認申購」，並輸入交易密碼。恭喜你，你的專屬自動財富增值計劃正式啟動了！</li>
+              <li><strong>(美股專屬) 選擇扣款幣別：</strong> 若申購美股 ETF，系統會讓你選擇「台幣」或「外幣」扣款。想追求極致省力，可選「台幣扣款」，交由券商自動依當下匯率換匯；若想精打細算，則可選「外幣扣款」，平時趁匯率低點自行換好美元存入外幣交割帳戶中。</li>
+            </ol>
+            <blockquote><strong>最後的叮嚀：</strong> 投資市場上最終的贏家，往往不是最聰明、最會預測高低點的人，而是最能堅持紀律、在波動中依然不中斷扣款的人。定期定額、長線持有，讓時間成為你最好的朋友。</blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 延伸閱讀資源 ===== -->
+    <section id="more">
+      <div class="section-header scroll-fade-in">
+        <span class="section-kicker">延伸閱讀 · 客觀推薦</span>
+        <h2>想了解更多？這四個資源值得收藏</h2>
+        <p class="lead">精選官方與第三方指標性內容，助你建立更完整的理財防禦與長線投資思維。</p>
+      </div>
+
+      <div class="grid g-2 scroll-fade-in">
+        <!-- 資源 1 -->
+        <div class="card">
+          <div class="resource-card">
+            <div class="resource-num">1</div>
+            <div class="resource-body">
+              <h3>臺灣證券交易所 - 宅在家學習網</h3>
+              <span class="resource-badge">官方學堂 · 零商業推銷色彩</span>
+              <p>內含最正確的台股交易規則、ETF 運作機制與風險控管觀念，是新手建立基礎防禦與法規安全意識的最佳官方指南。</p>
+              <a href="https://shl.twse.com.tw/" target="_blank" rel="noopener" class="resource-link">
+                瀏覽官方學習網
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 資源 2 -->
+        <div class="card">
+          <div class="resource-card">
+            <div class="resource-num">2</div>
+            <div class="resource-body">
+              <h3>Mr. Market 市場先生 - ETF 教學專區</h3>
+              <span class="resource-badge">第三方指標 · 系統化理財指南</span>
+              <p>詳細拆解 ETF 的底層架構、內扣費用計算、如何申購與選擇指標，資訊量龐大且圖文並茂，非常適合新手建立完整框架。</p>
+              <a href="https://rich01.com/etf0050/" target="_blank" rel="noopener" class="resource-link">
+                閱讀市場先生教學
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 資源 3 -->
+        <div class="card">
+          <div class="resource-card">
+            <div class="resource-num">3</div>
+            <div class="resource-body">
+              <h3>綠角財經筆記 - 指數化投資心法</h3>
+              <span class="resource-badge">前輩經驗 · 資深指數化倡議部落格</span>
+              <p>深刻闡述為何一般大眾不應盲目追求選股與擇時交易，而是應透過「買下整個市場」的低成本配置，安全穩定地累積長線財富。</p>
+              <a href="https://greenhornfinancefootnote.blogspot.com/2026/03/50etf00502026.html" target="_blank" rel="noopener" class="resource-link">
+                研讀綠角心法
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 資源 4 -->
+        <div class="card featured-resource">
+          <div class="resource-card">
+            <div class="resource-num">4</div>
+            <div class="resource-body">
+              <h3>股癌 Gooaye - 節目與官方網站</h3>
+              <span class="resource-badge">市場高敏感度 · 大眾化投資觀點</span>
+              <p>雖然內容常涉及個股實戰，但節目核心常提醒新手應以大盤型 ETF 作為資產配置的核心，並高度重視實戰中的心理素質調適。</p>
+              <a href="https://gooaye.com" target="_blank" rel="noopener" class="resource-link">
+                前往官方網站
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer & Disclaimer ===== -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        ETF 新手教學手冊
+      </div>
+      <div class="footer-nav">
+        <a href="#quickstart">新手懶人包</a>
+        <a href="#history">股票前世今生</a>
+        <a href="#business">商業本質澄清</a>
+        <a href="#allocation">定存與 ETF</a>
+        <a href="#etf">三大主流 ETF</a>
+        <a href="#practice">定期定額實戰</a>
+        <a href="#more">延伸學習資源</a>
+      </div>
+      <p class="footer-disclaimer">
+        <b>理財免責聲明：</b> 本網站所有教學內容（包括但不限於對 0050、VOO、QQQ 的說明與比較）均為教育學術與客觀觀點分享，不構成任何商業推銷、投資建議或要約。金融市場投資有其風險，歷史績效不代表未來回報，投資人申購前應詳閱各基金公開說明書，評估自身風險承受能力並自負盈虧責任。
+      </p>
+      <p style="font-size: 0.75rem; color: #334155; margin-top: 10px;">
+        © 2026 ETF Beginner Guide. All rights reserved. Built for GitHub Pages.
+      </p>
     </div>
-    <div class="grid g2">
-      <div class="card reveal"><div class="res">
-        <div class="rn">1</div>
-        <div>
-          <h3>臺灣證券交易所 · 宅在家學習網</h3>
-          <div class="type">官方教學 · 不具商業推銷色彩</div>
-          <p>內含最正確的台股交易規則、ETF 運作機制與風險控管觀念，是新手建立基礎防禦與法規意識的最佳官方指南。</p>
-          <a class="link" href="https://shl.twse.com.tw/" target="_blank" rel="noopener">前往網站 →</a>
-        </div>
-      </div></div>
-      <div class="card reveal"><div class="res">
-        <div class="rn">2</div>
-        <div>
-          <h3>Mr. Market 市場先生 · ETF 新手入門</h3>
-          <div class="type">系統化理財部落格</div>
-          <p>詳細拆解 ETF 的底層架構、費用計算與選擇指標，資訊量龐大且圖文並茂，適合完全沒概念的新手建立完整框架。</p>
-          <a class="link" href="https://rich01.com/etf0050/" target="_blank" rel="noopener">前往網站 →</a>
-        </div>
-      </div></div>
-      <div class="card reveal"><div class="res">
-        <div class="rn">3</div>
-        <div>
-          <h3>綠角財經筆記 · 指數化投資本質</h3>
-          <div class="type">台灣指數化投資先驅</div>
-          <p>深刻闡述為何一般大眾不該盲目選股與擇時，而應透過「買下整個市場」的低成本資產配置，安全穩定累積長線財富。</p>
-          <a class="link" href="https://greenhornfinancefootnote.blogspot.com/2026/03/50etf00502026.html" target="_blank" rel="noopener">前往網站 →</a>
-        </div>
-      </div></div>
-      <div class="card reveal"><div class="res">
-        <div class="rn">4</div>
-        <div>
-          <h3>股癌 Gooaye · 官網與 Podcast</h3>
-          <div class="type">高市場敏感度財經節目</div>
-          <p>雖涉及個股實戰，但核心觀點常提醒新手以大盤型 ETF 作為資產配置核心，並重視實戰中的心理素質調適。</p>
-          <a class="link" href="https://gooaye.com" target="_blank" rel="noopener">前往網站 →</a>
-        </div>
-      </div></div>
-    </div>
+  </footer>
+
+  <!-- 懸浮回頂部按鈕 -->
+  <button id="back-to-top" title="回到頂部">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- Lightbox 圖片放大遮罩 -->
+  <div id="lightbox-container" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="放大圖示">
   </div>
-</section>
 
-</main>
+  <script>
+    // ===== 1. 滾動進度條與 Active 導覽連結 =====
+    const progressBar = document.getElementById('progress-bar');
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-<footer>
-  <div class="wrap">
-    <div class="fbrand"><span>🌱</span> ETF 新手教學手冊</div>
-    <div class="fnav">
-      <a href="#quickstart">懶人包</a>
-      <a href="#history">股票起源</a>
-      <a href="#business">商業本質</a>
-      <a href="#allocation">資產配置</a>
-      <a href="#etf">主流 ETF</a>
-      <a href="#practice">實戰步驟</a>
-      <a href="#more">延伸閱讀</a>
-    </div>
-    <p class="disc">⚠️ 本網站為教育學習用途，內容整理自公開教學手冊，不構成任何投資建議。投資有風險，ETF 並非穩賺不賠商品，過去績效不代表未來表現。投資前請務必獨立判斷、審慎評估自身風險承受能力。</p>
-  </div>
-</footer>
+    window.addEventListener('scroll', () => {
+      // 進度條
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / scrollHeight) * 100;
+      progressBar.style.width = scrolled + '%';
 
-<button id="toTop" aria-label="回到頂部">↑</button>
+      // 導覽標籤 active 狀態
+      let currentSectionId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        const height = sec.offsetHeight;
+        if (window.scrollY >= top && window.scrollY < top + height) {
+          currentSectionId = sec.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
+        }
+      });
 
-<script>
-// progress bar
-const prog=document.getElementById('progress');
-const toTop=document.getElementById('toTop');
-function onScroll(){
-  const h=document.documentElement;
-  const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);
-  prog.style.width=(sc*100)+'%';
-  toTop.classList.toggle('show',h.scrollTop>500);
-}
-window.addEventListener('scroll',onScroll,{passive:true});
-onScroll();
-toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+      // 回頂部按鈕顯示
+      const backToTopBtn = document.getElementById('back-to-top');
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
 
-// reveal on scroll
-const io=new IntersectionObserver((es)=>{
-  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    // 回頂部按鈕點擊
+    document.getElementById('back-to-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-// smooth-close for details animation friendliness (optional): scroll opened detail into view
-document.querySelectorAll('details.expand').forEach(d=>{
-  d.addEventListener('toggle',()=>{
-    if(d.open){
-      // ensure summary stays visible on mobile
-      setTimeout(()=>{
-        const r=d.getBoundingClientRect();
-        if(r.top<70) d.querySelector('summary').scrollIntoView({behavior:'smooth',block:'start'});
-      },50);
+
+
+    // ===== 3. 手風琴高度平滑過渡 (Accordion JS) =====
+    const accordionButtons = document.querySelectorAll('.accordion-btn');
+    accordionButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        const chev = btn.querySelector('.chev');
+        
+        if (content.classList.contains('open')) {
+          // 收合
+          content.style.maxHeight = content.scrollHeight + 'px'; // 先給明確高度才能 transition
+          setTimeout(() => {
+            content.style.maxHeight = '0px';
+            content.classList.remove('open');
+          }, 10);
+          btn.style.backgroundColor = '';
+          if (chev) chev.style.transform = 'rotate(0deg)';
+        } else {
+          // 展開
+          content.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          btn.style.backgroundColor = 'var(--secondary-light)';
+          if (chev) chev.style.transform = 'rotate(180deg)';
+          
+          // 動畫完成後設為 auto 防止響應式排版被高度鎖死
+          setTimeout(() => {
+            if (content.classList.contains('open')) {
+              content.style.maxHeight = 'none';
+            }
+          }, 350);
+        }
+      });
+    });
+
+    // ===== 4. 滾動漸入動畫 (IntersectionObserver) =====
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.scroll-fade-in, .tilt-card, .stepper-item, .cathay-step, .versus-card').forEach(el => {
+      if (!el.classList.contains('scroll-fade-in')) {
+        el.classList.add('scroll-fade-in');
+      }
+      scrollObserver.observe(el);
+    });
+
+    // ===== 5. 互動式步進器 Checkbox 功能 =====
+    function toggleStep(element) {
+      element.classList.toggle('checked');
     }
-  });
-});
-</script>
+
+    // ===== 6. Lightbox 圖片放大功能 =====
+    const lightbox = document.getElementById('lightbox-container');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(element) {
+      const img = element.querySelector('img');
+      if (img) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('show');
+      }
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('show');
+    }
+  </script>
 </body>
 </html>
