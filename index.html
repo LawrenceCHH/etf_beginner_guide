@@ -747,6 +747,248 @@
       color: var(--text-main);
     }
 
+    /* ===== 雙軌金流流程圖 (Dual-Track Flowchart) ===== */
+    .flowchart-container {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      margin: 24px 0;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .flowchart-intro {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .flowchart-intro h4 {
+      font-size: 1.2rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .flowchart-intro p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .flowchart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      position: relative;
+    }
+    /* 中間分隔線 */
+    .flowchart-grid::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 40px;
+      bottom: 20px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--border-light), var(--border), var(--border-light));
+      transform: translateX(-50%);
+    }
+    .flowchart-track {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .track-header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px dashed var(--border-light);
+    }
+    .track-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .tag-real {
+      background-color: var(--secondary-light);
+      color: var(--primary-hover);
+      border: 1px solid rgba(101, 146, 135, 0.2);
+    }
+    .tag-market {
+      background-color: var(--warning-bg);
+      color: var(--warning-text);
+      border: 1px solid rgba(212, 163, 115, 0.2);
+    }
+    .track-header h5 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .flow-card {
+      width: 100%;
+      background-color: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: var(--transition);
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+    .flow-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--primary);
+    }
+    .flow-card-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      background: var(--surface);
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-light);
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .flow-card-content {
+      flex: 1;
+    }
+    .flow-card h6 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .flow-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+    .flow-card-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .flow-card-badge.cash {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+    .flow-card-badge.asset {
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+    .flow-card-badge.neutral {
+      background-color: #f5f5f5;
+      color: #616161;
+    }
+    .highlight-company {
+      border-left: 4px solid var(--primary);
+      background: linear-gradient(90deg, rgba(101, 146, 135, 0.06) 0%, var(--bg) 100%);
+    }
+    .highlight-market {
+      border-left: 4px solid var(--warning-border);
+      background: linear-gradient(90deg, rgba(212, 163, 115, 0.08) 0%, var(--bg) 100%);
+    }
+    .flow-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 12px 0;
+      position: relative;
+      width: 100%;
+    }
+    .arrow-line {
+      width: 2px;
+      height: 24px;
+      background-color: var(--border);
+    }
+    .arrow-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--surface);
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-light);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .arrow-svg {
+      width: 12px;
+      height: 12px;
+      color: var(--primary);
+      position: absolute;
+      bottom: -6px;
+    }
+    .arrow-svg.market-arrow {
+      color: var(--warning-border);
+    }
+    .flowchart-footer {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--border-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .flowchart-footer p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .flowchart-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .flowchart-grid::after {
+        display: none;
+      }
+      .flowchart-grid::before {
+        display: none;
+      }
+      .track-header {
+        margin-bottom: 16px;
+      }
+      .flow-arrow {
+        margin: 8px 0;
+      }
+      .arrow-line {
+        height: 20px;
+      }
+      .flow-card-badge {
+        display: none; /* 在手機版隱藏標籤以節省空間 */
+      }
+    }
+
     /* ===== 第三章：定存 vs ETF 比較 ===== */
     .versus-container {
       display: grid;
@@ -1918,44 +2160,122 @@
           </div>
         </div>
 
-        <h3 style="margin-bottom: 12px;">📈 實戰解析：iPhone 推出時，金流如何流動？</h3>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>參與角色</th>
-                <th>動作</th>
-                <th>現金流向</th>
-                <th>股票/資產變動</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>消費者</td>
-                <td>購買新手機</td>
-                <td>💸 流向 Apple 與台灣供應鏈</td>
-                <td>❌ 無股票變動</td>
-              </tr>
-              <tr>
-                <td>投資人/機構</td>
-                <td>看好新機前景</td>
-                <td>💸 流向證券市場（買方）</td>
-                <td>📈 資金推升市場整體估值</td>
-              </tr>
-              <tr>
-                <td>Apple 企業</td>
-                <td>賺取手機利潤</td>
-                <td>💸 支付供應鏈、發股利、買庫藏股</td>
-                <td>📉 市面流通股數減少（股票內在價值變高）</td>
-              </tr>
-              <tr>
-                <td>長線投資人/ETF</td>
-                <td>持續長期持有</td>
-                <td>💰 獲得股利分配或資產淨值增長</td>
-                <td>🔄 與企業共享長期的獲利與成長成果</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="flowchart-container">
+          <div class="flowchart-intro">
+            <h4>💡 實戰圖解：iPhone 推出時的「雙軌金流」</h4>
+            <p>透過 iPhone 的發售，看懂實體經濟（現金流）與資本市場（股價波動）如何獨立運作又相互影響。</p>
+          </div>
+          
+          <div class="flowchart-grid">
+            <!-- Left Column: Real Economy -->
+            <div class="flowchart-track">
+              <div class="track-header">
+                <span class="track-tag tag-real">第一軌：真實商業世界</span>
+                <h5>現金與獲利循環</h5>
+              </div>
+              
+              <div class="flow-step">
+                <div class="flow-card">
+                  <div class="flow-card-icon">📱</div>
+                  <div class="flow-card-content">
+                    <h6>消費者</h6>
+                    <p>購買新手機，支付購機費用。</p>
+                  </div>
+                  <span class="flow-card-badge cash">💸 支出現金</span>
+                </div>
+                
+                <div class="flow-arrow">
+                  <div class="arrow-line"></div>
+                  <span class="arrow-text">💸 購機款項流入企業</span>
+                  <svg class="arrow-svg" viewBox="0 0 24 24" width="12" height="12"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+
+              <div class="flow-step">
+                <div class="flow-card highlight-company">
+                  <div class="flow-card-icon">🍏</div>
+                  <div class="flow-card-content">
+                    <h6>Apple 企業與供應鏈</h6>
+                    <p>賺取盈餘，支付零件商與員工，剩餘利潤發股利或買庫藏股。</p>
+                  </div>
+                </div>
+                
+                <div class="flow-arrow">
+                  <div class="arrow-line"></div>
+                  <span class="arrow-text">💰 盈餘分配 / 買回庫藏股</span>
+                  <svg class="arrow-svg" viewBox="0 0 24 24" width="12" height="12"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+
+              <div class="flow-step">
+                <div class="flow-card">
+                  <div class="flow-card-icon">🔄</div>
+                  <div class="flow-card-content">
+                    <h6>長線投資人 / ETF</h6>
+                    <p>持續長期持有，獲得股利分配或資產淨值增長。</p>
+                  </div>
+                  <span class="flow-card-badge asset">📈 資產增值</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Financial Market -->
+            <div class="flowchart-track">
+              <div class="track-header">
+                <span class="track-tag tag-market">第二軌：證券交易市場</span>
+                <h5>情緒與估值波動</h5>
+              </div>
+              
+              <div class="flow-step">
+                <div class="flow-card">
+                  <div class="flow-card-icon">👥</div>
+                  <div class="flow-card-content">
+                    <h6>投資人與機構</h6>
+                    <p>看好新機銷售與公司未來盈餘前景，在股市買進股票。</p>
+                  </div>
+                  <span class="flow-card-badge cash">💸 投入資金</span>
+                </div>
+                
+                <div class="flow-arrow">
+                  <div class="arrow-line"></div>
+                  <span class="arrow-text">💸 資金進入次級交易市場</span>
+                  <svg class="arrow-svg market-arrow" viewBox="0 0 24 24" width="12" height="12"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+
+              <div class="flow-step">
+                <div class="flow-card highlight-market">
+                  <div class="flow-card-icon">🏛️</div>
+                  <div class="flow-card-content">
+                    <h6>證券交易所 (次級市場)</h6>
+                    <p>股票在買賣雙方間轉手，資金流向賣方口袋，與 Apple 無關。</p>
+                  </div>
+                </div>
+                
+                <div class="flow-arrow">
+                  <div class="arrow-line"></div>
+                  <span class="arrow-text">📈 推升市場供需與市值</span>
+                  <svg class="arrow-svg market-arrow" viewBox="0 0 24 24" width="12" height="12"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+
+              <div class="flow-step">
+                <div class="flow-card">
+                  <div class="flow-card-icon">📈</div>
+                  <div class="flow-card-content">
+                    <h6>股價上漲 / 市值變動</h6>
+                    <p>企業市場估值拉高。此時企業帳戶並未獲得任何直接資金。</p>
+                  </div>
+                  <span class="flow-card-badge neutral">📉 流通股數不變</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flowchart-footer">
+            <div class="badge-neutral">💡 關鍵結論</div>
+            <p>一般股市交易的資金是在投資人之間流動，並不直接流入企業。長線投資人（與 ETF 持有者）能獲利，核心在於<b>第一軌：企業賺錢後分紅並推升內在價值</b>；而非僅依靠<b>第二軌的價格波動與短期投機</b>。</p>
+          </div>
         </div>
 
         <div class="callout">
@@ -1994,8 +2314,126 @@
               <li><strong>利息（Interest）：</strong>你把錢借給銀行或買債券，不論企業今年賺不賺錢，都必須固定支付給你的代價。</li>
               <li><strong>股利（Dividend）：</strong>你身為「公司股東」，公司今年大賺錢後分享給你的紅利（配息/配股）。如果虧錢，公司可以決定不發股利。</li>
             </ul>
-            <h4>3. 實戰解析：iPhone 推出時，現金與股票如何流動？</h4>
-            <p>當 Apple 宣布推出新款 iPhone 時，不僅是消費者買手機，更是一場龐大的跨國金錢流動：（詳細對照見上方表格）</p>
+            <h4>3. 實戰解析：iPhone 推出時，雙軌金流如何流動？</h4>
+            <p>當 Apple 宣布推出新款 iPhone 時，不僅是消費者買手機，更是一場龐大的雙軌價值流動：</p>
+            
+            <div class="flowchart-container">
+              <div class="flowchart-intro">
+                <h4>💡 實戰圖解：iPhone 推出時的「雙軌金流」</h4>
+                <p>透過 iPhone 的發售，看懂實體經濟（現金流）與資本市場（股價波動）如何獨立運作又相互影響。</p>
+              </div>
+              
+              <div class="flowchart-grid">
+                <!-- Left Column: Real Economy -->
+                <div class="flowchart-track">
+                  <div class="track-header">
+                    <span class="track-tag tag-real">第一軌：真實商業世界</span>
+                    <h5>現金與獲利循環</h5>
+                  </div>
+                  
+                  <div class="flow-step">
+                    <div class="flow-card">
+                      <div class="flow-card-icon">📱</div>
+                      <div class="flow-card-content">
+                        <h6>消費者</h6>
+                        <p>購買新手機，支付購機費用。</p>
+                      </div>
+                      <span class="flow-card-badge cash">💸 支出現金</span>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                      <div class="arrow-line"></div>
+                      <span class="arrow-text">💸 購機款項流入企業</span>
+                      <svg class="arrow-svg" viewBox="0 0 24 24" width="12" height="12"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+
+                  <div class="flow-step">
+                    <div class="flow-card highlight-company">
+                      <div class="flow-card-icon">🍏</div>
+                      <div class="flow-card-content">
+                        <h6>Apple 企業與供應鏈</h6>
+                        <p>賺取盈餘，支付零件商與員工，剩餘利潤發股利或買庫藏股。</p>
+                      </div>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                      <div class="arrow-line"></div>
+                      <span class="arrow-text">💰 盈餘分配 / 買回庫藏股</span>
+                      <svg class="arrow-svg" viewBox="0 0 24 24" width="12" height="12"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+
+                  <div class="flow-step">
+                    <div class="flow-card">
+                      <div class="flow-card-icon">🔄</div>
+                      <div class="flow-card-content">
+                        <h6>長線投資人 / ETF</h6>
+                        <p>持續長期持有，獲得股利分配或資產淨值增長。</p>
+                      </div>
+                      <span class="flow-card-badge asset">📈 資產增值</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Financial Market -->
+                <div class="flowchart-track">
+                  <div class="track-header">
+                    <span class="track-tag tag-market">第二軌：證券交易市場</span>
+                    <h5>情緒與估值波動</h5>
+                  </div>
+                  
+                  <div class="flow-step">
+                    <div class="flow-card">
+                      <div class="flow-card-icon">👥</div>
+                      <div class="flow-card-content">
+                        <h6>投資人與機構</h6>
+                        <p>看好新機銷售與公司未來盈餘前景，在股市買進股票。</p>
+                      </div>
+                      <span class="flow-card-badge cash">💸 投入資金</span>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                      <div class="arrow-line"></div>
+                      <span class="arrow-text">💸 資金進入次級交易市場</span>
+                      <svg class="arrow-svg market-arrow" viewBox="0 0 24 24" width="12" height="12"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+
+                  <div class="flow-step">
+                    <div class="flow-card highlight-market">
+                      <div class="flow-card-icon">🏛️</div>
+                      <div class="flow-card-content">
+                        <h6>證券交易所 (次級市場)</h6>
+                        <p>股票在買賣雙方間轉手，資金流向賣方口袋，與 Apple 無關。</p>
+                      </div>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                      <div class="arrow-line"></div>
+                      <span class="arrow-text">📈 推申市場供需與市值</span>
+                      <svg class="arrow-svg market-arrow" viewBox="0 0 24 24" width="12" height="12"><path d="M12 5v14M19 12l-7 7-7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+
+                  <div class="flow-step">
+                    <div class="flow-card">
+                      <div class="flow-card-icon">📈</div>
+                      <div class="flow-card-content">
+                        <h6>股價上漲 / 市值變動</h6>
+                        <p>企業市場估值拉高。此時企業帳戶並未獲得任何直接資金。</p>
+                      </div>
+                      <span class="flow-card-badge neutral">📉 流通股數不變</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flowchart-footer">
+                <div class="badge-neutral">💡 關鍵結論</div>
+                <p>一般股市交易的資金是在投資人之間流動，並不直接流入企業。長線投資人（與 ETF 持有者）能獲利，核心在於<b>第一軌：企業賺錢後分紅並推升內在價值</b>；而非僅依靠<b>第二軌的價格波動與短期投機</b>。</p>
+              </div>
+            </div>
             <blockquote><strong>邏輯修正提醒：</strong> 股價反映的是企業長期的價值成長。長線投資人（包含大盤型 ETF 持有者）並非在玩「低買高賣、尋找接盤俠」的零和遊戲，而是透過持續持有，與全球頂尖企業共享長期營運所帶來的利潤與資產增值。</blockquote>
           </div>
         </div>
