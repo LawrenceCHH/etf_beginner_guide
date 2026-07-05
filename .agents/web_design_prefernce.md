@@ -1,35 +1,28 @@
 # Web Design & Front-End Design Preferences (網頁與前端設計規範)
 
-本文件整理並提取本專案（日系抹茶侘寂風 ETF 新手教學）的網頁設計與前端開發邏輯，歸納出**抽象設計理念（原則）**與**具體實作規範（技術）**。此規範旨在協助未來的專案或網頁設計，維持一致的高質感視覺美學、雙軌閱讀架構與行動端極致體驗。
+本文件整理並歸納本專案的網頁設計與前端開發邏輯。為了實現「極簡程式碼」、「手機體驗優先（Mobile-First）」且在「桌面版完美相容」的設計，本規範採用**行動端核心一體化架構（Mobile-Centric Unified Design）**，避免複雜的精簡/詳細雙軌 HTML 切換，大幅度降低開發與維護難度。
 
 ---
 
 ## 🍃 1. 抽象設計理念 (Abstract Design Principles)
 
 ### 1.1 日系侘寂風視覺哲學 (Wabi-sabi Aesthetics)
-* **低飽和與大自然色彩**：避免使用刺眼、高飽和度的純紅、純藍或純綠。採用源於大自然的色調（如森林綠、泥土灰、米黃、開心果奶霜），呈現溫和、平靜、有呼吸感的視覺基調。
-* **留白與呼吸感**：區塊之間預留足夠的內距（`padding`）與外距（`margin`），並利用陰影與極細的框線（`border`）建立輕量級層次，避免資訊過度擁擠。
-* **情緒對比色設計**：若需使用警告或市場情緒色彩，應同樣經過「侘寂化」的低飽和微調（例如使用溫和的暖橘色 `#d4a373` 代替刺眼的紅色，以表現市場估值波動或警示資訊）。
+* **低飽和與大自然色彩**：避免使用刺眼、高飽和度的純紅、純藍或純綠。採用溫和的自然色調（如森林綠、泥土灰、米黃、開心果奶霜），呈現溫和、平靜、有呼吸感的視覺基調。
+* **留白與呼吸感**：區塊之間預留足夠的內距（`padding`）與外距（`margin`），並利用陰影與極細的框線（`border`）建立輕量級層次。
+* **情緒對比色設計**：警告或情緒色彩同樣經過低飽和微調（例如使用溫和的暖橘色 `#d4a373` 代替刺眼的紅色，以表現市場估值波動或警示資訊）。
 
-### 1.2 雙軌閱讀哲學 (Dual-Track Content Architecture)
-* **尊重讀者的專注力**：現代讀者時間破碎且耐心有限。網頁應提供兩種閱讀層次：
-  1. **精簡摘要軌**：以高視覺化圖卡、流程圖、核心數據為主，適合快速瀏覽、5分鐘抓取重點。
-  2. **完整好讀軌**：以系統化散文、深度解說、脈絡對照為主，適合安靜深讀。
-* **無縫切換體驗**：切換這兩種軌道時，必須做到「不迷失位置」、「不閃爍跳躍」，提供極致平滑的體驗。
-
-### 1.3 互動細節與微互動 (Micro-interactions)
-* **生命力（Aliveness）**：卡片、按鈕在 Hover 時應有輕微的位移（如向上平移 `2px`）與陰影加深，讓使用者感受到元件的活性。
-* **視覺線索暗示**：對於可滑動或可展開的區塊，提供淡出遮罩（fade-out mask）或旋轉箭頭等視覺暗示，免去文字說明，符合直覺。
+### 1.2 行動核心一體化哲學 (Mobile-Centric Unified Philosophy)
+* **手機優先設計 (Mobile-First)**：所有 UI/UX 完全針對手機（單手拇指操作、垂直滾動流、觸控目標尺寸）進行原生設計。
+* **桌面端卡片化相容 (Desktop Adaptive Framing)**：桌面版不重新規劃複雜的多欄排版，而是透過限制內容容器最大寬度（如 `max-width: 540px` 或 `600px`）將其置中，兩側搭配柔和背景或毛玻璃感，讓桌面版呈現精美的「卡片式 Web App」質感。
+* **漸進式揭露 (Progressive Disclosure)**：捨棄「精簡版」與「詳細版」兩套 HTML 程式碼的雙軌切換架構。改為**單一 HTML 架構**，預設僅呈現核心重點與大綱，詳細內容則透過「點擊展開（Accordion）」、「底部彈出抽屜（Drawer/Bottom Sheet）」或「橫向滑動圖卡（Carousel）」讓使用者依需揭露，從而免除複雜的 JS 滾動定位補償邏輯。
 
 ---
 
 ## 🛠️ 2. 具體技術規範 (Concrete Specifications)
 
 ### 2.1 配色與語意 Tokens (Color Tokens)
-未來專案可參照此 HSL/Hex 微調之調色盤：
 ```css
 :root {
-  /* 基礎配色 */
   --primary: #659287;          /* 主色：深海綠 / 抹茶綠 */
   --primary-hover: #4e736a;    /* 主色懸浮 */
   --secondary: #88bda4;        /* 次色：中海綠 */
@@ -40,95 +33,85 @@
   --border: #b1d3b9;           /* 輕量框線 */
   --border-light: #e6f2dd;     /* 超輕量框線/分隔線 */
   
-  /* 文字顏色 - 符合 WCAG AA 對比標準 */
   --text-main: #2f4842;        /* 主要文字：極深墨綠灰 */
   --text-muted: #425c56;       /* 說明文字：深灰綠 */
-  --text-inverse: #ffffff;     /* 反白文字 */
   
-  /* 警告與情緒色 (低飽和微調) */
   --warning-bg: #fdfae6;       /* 暖橘/黃背景 */
   --warning-border: #d4a373;   /* 暖橘框線 */
   --warning-text: #8c5e3c;     /* 暖橘文字 */
+
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
 }
 ```
 
-### 2.2 雙軌閱讀切換機制 (Dual-Track HTML/CSS/JS)
-* **HTML 架構**：
-  * 精簡卡片、摘要內容放在 `.view-summary` 內。
-  * 長篇詳解放在 `.view-full` 內。
-  * 章節標題及大框架維持共用，不放入上述兩個容器。
-* **CSS 切換**：
-  ```css
-  /* 預設：精簡模式 */
-  body.summary-mode .view-summary { display: block; }
-  body.summary-mode .view-full { /* 作為手風琴隱藏，或預設 display: none */ }
-  
-  /* 詳細模式 */
-  body.full-mode .view-summary { display: none !important; }
-  body.full-mode .view-full {
-    display: block !important;
-    background-color: var(--surface) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: var(--radius-lg) !important;
-  }
-  ```
-* **JS 滾動補償 (Scroll Compensation)**：
-  當讀者切換模式時，網頁總長度會劇烈變化。必須利用 JS 計算當前視窗頂部的 Section ID，切換後滾動定位回去（扣除 Sticky Navbar 的高度，一般預留 `85px` 補償），以確保閱讀不中斷：
-  ```javascript
-  const closestSec = getClosestSection(); // 偵測當前章節
-  setReadingMode(newMode);
-  if (closestSec) {
-    setTimeout(() => {
-      const rect = closestSec.getBoundingClientRect();
-      window.scrollTo({
-        top: window.scrollY + rect.top - 85,
-        behavior: 'smooth'
-      });
-    }, 50);
-  }
-  ```
+### 2.2 行動核心置中容器排版 (Centered App-like Layout)
+* 透過外層容器限制最大寬度，在桌面端保持如手機 App 的精美版面，免去多套 RWD 切換代碼：
+```css
+.app-container {
+  width: 100%;
+  max-width: 540px;            /* 限制黃金閱讀寬度，在桌面端保持單欄手機感 */
+  margin: 0 auto;              /* 水平置中 */
+  background-color: var(--surface);
+  min-height: 100vh;
+  box-shadow: var(--shadow-md); /* 在桌面端與外圍背景區分 */
+  border-left: 1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
+}
+body {
+  background-color: #e2ebd9;   /* 桌面端外圍背景：使用稍深抹茶色烘托置中卡片 */
+}
+```
 
-### 2.3 雙軌流程圖設計規範 (Dual-Track Flowchart)
-針對流程圖（如 Apple 實戰金流），應放棄傳統縱深過長、在手機難以閱讀的複雜表格，改用**卡片式雙軌流程圖**：
-* **桌面端**：採用 `display: grid; grid-template-columns: 1fr 1fr;` 雙欄對照。中間使用 `::after` 絕對定位繪製垂直漸層分隔線。
-* **行動端 (`<= 768px`)**：
-  * 自動折疊成 `grid-template-columns: 1fr;` 單欄上下堆疊。
-  * 隱藏中間分隔線 (`display: none`)。
-  * 隱藏非必要的徽章標籤（如 `.flow-card-badge`）以最大化行內空間。
-  * 將連線箭頭 (`.flow-arrow`) 轉為向下指引。
-* **卡片 Hover 互動**：
-  * Hover 卡片時加上 `transform: translateY(-2px);` 及 `box-shadow`。
-  * 核心企業或市場節點加上特別邊框色（如 `border-left: 4px solid var(--primary)`）以強化視覺起點。
+### 2.3 單一 HTML 漸進式揭露實作 (Unified Progressive Components)
+不用複製兩套 DOM 結構，使用單一結構配合 CSS/JS 隱藏細節：
+* **折疊詳解卡片 (Progressive Accordion)**：
+  ```html
+  <div class="info-block">
+    <div class="info-summary">
+      <h6>💡 你買股票的錢，是給公司嗎？</h6>
+      <p>一般股市交易中，資金是在投資人之間流轉，企業一毛錢也拿不到。</p>
+    </div>
+    
+    <!-- 點擊此按鈕在下方展開詳解，不改變整體閱讀位置，免滾動補償 -->
+    <button class="expand-btn" onclick="toggleDetails(this)">閱讀完整解析</button>
+    
+    <div class="info-details" style="display: none;">
+      <p>詳細說明：只有在 IPO（初次公開發行）或企業增資時...</p>
+    </div>
+  </div>
+  ```
+* **行動端底部抽屜 (Bottom Sheet/Drawer)**：
+  在手機端，點擊詳細按鈕時，從螢幕底部滑出半透明毛玻璃質感的抽屜面板，提供沉浸式但易收合的詳細閱讀，桌面端則自動降級為居中對話框。
 
-### 2.4 行動端導覽列極致體驗 (Mobile Navbar Smooth-Scroll)
-* **水平滑動與淡出**：手機版導覽列應單行水平排列，允許 `overflow-x: auto;`。使用 CSS `mask-image` 漸層遮罩，讓兩側邊緣呈現半透明淡出，提示可左右滑動。
-* **Active 項目自動置中**：監聽滾動與點擊，在切換章節時，以 JS 自動將 Active 的連結平滑滾動至導覽列的中心位置：
+### 2.4 行動端水平滑動與自動置中 (Mobile Navbar & Swipeable Flow)
+* **水平滑動導覽 (Overflow Slider)**：手機版導覽列與長卡片組允許橫向滑動 (`overflow-x: auto;`)，配合 `mask-image` 淡出效果。
+* **導覽項目置中**：點擊或滾動觸發時，JS 自動以 `scrollTo` 將 Active 項目滑動至容器中軸，提升單手點擊率。
   ```javascript
   const activeLink = document.querySelector('.nav-link.active');
   if (activeLink) {
     const container = document.querySelector('.nav-menu');
-    const containerWidth = container.offsetWidth;
-    const linkLeft = activeLink.offsetLeft;
-    const linkWidth = activeLink.offsetWidth;
     container.scrollTo({
-      left: linkLeft - (containerWidth / 2) + (linkWidth / 2),
+      left: activeLink.offsetLeft - (container.offsetWidth / 2) + (activeLink.offsetWidth / 2),
       behavior: 'smooth'
     });
   }
   ```
 
-### 2.5 程式安全性防禦 (Code Defense)
-* **全域掛載**：對於單一 HTML 檔案且使用行內 `onclick="foo()"` 呼叫的函式，必須在 JS 尾端顯式掛載到 `window` 上（如 `window.foo = foo`），防止在 sandbox、iframe 或模組化編譯環境中因作用域問題發生 `ReferenceError`。
-* **LocalStorage 防禦**：任何讀取/寫入 `localStorage` 的行為，必須包覆在 `try...catch` 中，避免使用者在無痕模式或在本地以 `file://` 開啟時拋出安全例外導致整個腳本崩潰。
-* **效能防禦**：對滾動監聽（`scroll`）使用 `throttle` 或 `requestAnimationFrame` 以防效能卡頓。
+### 2.5 程式碼極簡防禦 (Code Minimization & Safety)
+* **避免複製 DOM**：例如，行動端表格直接在原容器上透過 CSS 或 Scale 縮放，或以原生的 `dialog` 元素開啟，避免使用 JS 複製整個 Table 的 `cloneNode` 操作，以求程式碼最精簡。
+* **LocalStorage 與全域綁定防禦**：
+  * LocalStorage 操作一律包覆於 `try...catch` 區塊中。
+  * 行內事件綁定之函式一律顯式掛載至 `window` 全域物件上。
 
 ---
 
 ## 📋 3. 新專案設計檢核表 (New Project Checklist)
 
-* [ ] **色彩檢驗**：主文字對比度是否符合 WCAG AA 標準（建議墨綠灰/深灰綠）？是否避免使用高飽和純色？
-* [ ] **雙軌規劃**：首頁或主要頁面是否規劃了 `.view-summary` 與 `.view-full` 機制？
-* [ ] **滾動補償**：切換閱讀模式時，是否有做滾動定位補償，防止頁面跳躍？
-* [ ] **流程呈現**：複雜的多角色或前後順序邏輯，是否以「雙軌卡片流程圖」取代了傳統長表格？
-* [ ] **手機版導覽**：手機版導覽列是否能水平滑動？Active 項目是否能平滑自動置中？
-* [ ] **安全防禦**：所有的 `localStorage` 寫入是否有包覆 `try-catch`？行內事件函式是否已綁定至 `window`？
+* [ ] **一體化容器**：是否使用 `.app-container` 限制最大寬度（如 540px），使網頁在桌面與手機端有高度一致的 App 體驗？
+* [ ] **避免代碼重複**：是否移除了 `.view-summary` 與 `.view-full` 的複製邏輯，改用「單一 DOM + 漸進式展開」？
+* [ ] **原位展開**：所有的詳細內容是否使用原位展開（Accordion）或 Bottom Sheet，且無版面劇烈跳躍？
+* [ ] **滑動置中**：水平導覽列在切換時，Active 項目是否會自動滾動置中？
+* [ ] **防禦編寫**：`localStorage` 是否有 `try-catch`？行內事件是否全域掛載？
