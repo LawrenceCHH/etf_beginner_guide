@@ -32,7 +32,7 @@
       --border-light: #e6f2dd;
       
       --text-main: #2f4842;        /* 主要文字 - 極深墨綠灰 */
-      --text-muted: #5a7770;       /* 次要說明文字 */
+      --text-muted: #425c56;       /* 次要說明文字 (WCAG AA compliant) */
       --text-inverse: #ffffff;
       
       /* 提示與警告色 (配合侘寂風進行低飽和度微調，避免生硬刺眼) */
@@ -107,7 +107,81 @@
       background-color: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s, border-bottom 0.3s, backdrop-filter 0.3s;
+    }
+    header.navbar.hide-nav {
+      transform: translateY(-100%);
+    }
+    .reading-toggle-single {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background-color: var(--primary);
+      color: white;
       transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .reading-toggle-single:hover {
+      background-color: var(--primary-hover);
+    }
+    #reading-toggle-fab {
+      position: fixed;
+      bottom: 88px;
+      right: 24px;
+      z-index: 999;
+      display: none; /* 預設在桌面版隱藏 */
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background-color: rgba(101, 146, 135, 0.85); /* Matcha primary color with opacity */
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition);
+    }
+    #reading-toggle-fab:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+    
+    /* ===== 雙軌閱讀機制 (Dual-Track Reading Flow) ===== */
+    /* 預設為精簡模式 (Summary Mode) */
+    body.summary-mode .view-summary {
+      display: block;
+    }
+    body.summary-mode .view-full {
+      /* In summary mode, view-full acts as accordion-content (hidden by default) */
+    }
+
+    /* 詳細模式 (Full-text Mode) */
+    body.full-mode .view-summary {
+      display: none !important;
+    }
+    body.full-mode .view-full {
+      display: block !important;
+      max-height: none !important;
+      opacity: 1 !important;
+      overflow: visible !important;
+      border-width: 1px !important;
+      padding: 32px !important;
+      background-color: var(--surface) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow-sm) !important;
+      margin-top: 0 !important;
     }
     .nav-container {
       max-width: var(--max-width);
@@ -866,7 +940,7 @@
       margin-bottom: 2px;
     }
 
-    /* ===== 第五章：實戰步驟 ===== */
+    /* ===== 第五章：實戰步驟 (Static Stepper) ===== */
     .stepper {
       display: grid;
       gap: 16px;
@@ -880,42 +954,21 @@
       padding: 24px;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
-      cursor: pointer;
+      cursor: default;
       position: relative;
     }
-    .stepper-item:hover {
-      border-color: var(--primary);
-      transform: translateX(4px);
-    }
-    /* 已打勾/選中狀態 */
-    .stepper-item.checked {
-      background-color: var(--secondary-light);
-      border-color: var(--primary);
-    }
-    
-    .stepper-checkbox {
+    .stepper-number {
       flex-shrink: 0;
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      border: 2px solid var(--border);
+      background-color: var(--primary);
+      color: var(--text-inverse);
+      font-weight: 700;
+      font-size: 1rem;
       display: grid;
       place-items: center;
-      background-color: var(--surface);
-      color: transparent;
-      transition: var(--transition);
-    }
-    .stepper-item:hover .stepper-checkbox {
-      border-color: var(--primary);
-    }
-    .stepper-item.checked .stepper-checkbox {
-      background-color: var(--primary);
-      border-color: var(--primary);
-      color: var(--text-inverse);
-    }
-    .stepper-checkbox svg {
-      width: 18px;
-      height: 18px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .stepper-content h4 {
       font-size: 1.05rem;
@@ -1374,6 +1427,97 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 4px rgba(255, 255, 255, 0.1);
     }
 
+    /* 表格 Lightbox 放大功能 */
+    .table-lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+    .table-lightbox.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .table-lightbox-wrapper {
+      background-color: var(--surface);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 960px;
+      max-height: 85vh;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      animation: tableZoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes tableZoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .table-lightbox-scroll {
+      overflow: auto;
+      padding: 30px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-lightbox-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(15, 23, 42, 0.6);
+      color: #fff;
+      border: none;
+      font-size: 24px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10002;
+      transition: var(--transition);
+    }
+    .table-lightbox-close:hover {
+      background: rgba(15, 23, 42, 0.9);
+      transform: rotate(90deg);
+    }
+    .table-lightbox-rotate-hint {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding: 8px;
+      background-color: var(--bg);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-weight: 500;
+    }
+    .table-hint {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--primary-hover);
+      background-color: var(--secondary-light);
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      cursor: zoom-in;
+    }
+
     /* 滾動動畫 classes */
     .scroll-fade-in {
       opacity: 0;
@@ -1402,26 +1546,86 @@
         padding: 60px 0 15px;
       }
       .nav-container {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: 12px;
-        padding: 12px 16px 8px;
+        justify-content: space-between;
+        padding: 12px 16px;
+        gap: 8px;
       }
       .nav-brand {
         font-size: 1.1rem;
+        flex-shrink: 0;
       }
       .nav-menu {
-        width: 100%;
-        justify-content: flex-start;
-        padding: 4px 4px 8px;
-        gap: 6px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+        max-width: calc(100% - 130px);
         overflow-x: auto;
+        flex-shrink: 1;
+        gap: 6px;
+        padding: 4px 0;
+        scrollbar-width: none;
         -webkit-overflow-scrolling: touch; /* 讓 iOS 滾動更流暢 */
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, rgba(0, 0, 0, 0) 100%);
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, rgba(0, 0, 0, 0) 100%);
+        border-top: none !important;
+        position: relative;
+      }
+      .nav-menu::-webkit-scrollbar {
+        display: none !important;
       }
       .nav-link {
-        padding: 6px 12px;
-        font-size: 0.8rem;
+        padding: 10px 14px !important;
+        font-size: 0.85rem;
         flex-shrink: 0; /* 防止文字被強行壓縮變窄 */
+      }
+      .reading-toggle-single {
+        display: none !important;
+      }
+      #reading-toggle-fab {
+        display: flex; /* 在行動版顯示 */
+      }
+      .table-container {
+        overflow-x: hidden !important;
+        cursor: zoom-in;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+      }
+      .table-container table {
+        min-width: 100% !important;
+        width: 100% !important;
+        font-size: 0.58rem !important; /* 縮小表格以完整呈現在手機寬度中 */
+        table-layout: auto !important;
+      }
+      .table-container th {
+        white-space: nowrap !important;
+      }
+      .table-container th, .table-container td {
+        padding: 6px 3px !important;
+        word-break: keep-all !important;
+        white-space: normal !important;
+      }
+      
+      /* Lightbox 內的表格強制恢復正常尺寸與滑動 */
+      #table-lightbox-content table {
+        min-width: 720px !important;
+        width: 100% !important;
+        font-size: 0.88rem !important;
+        table-layout: auto !important;
+      }
+      #table-lightbox-content th {
+        white-space: normal !important;
+      }
+      #table-lightbox-content th, #table-lightbox-content td {
+        padding: 12px 14px !important;
+        word-break: normal !important;
+        white-space: normal !important;
+      }
+      /* 表格燈箱水平滑動優化 */
+      #table-lightbox-container .table-lightbox-scroll {
+        overflow-x: auto !important;
       }
       .hero {
         padding: 70px 0 50px;
@@ -1480,7 +1684,7 @@
     }
   </style>
 </head>
-<body>
+<body class="summary-mode">
   <!-- 頂部滾動進度條 -->
   <div id="progress-bar"></div>
 
@@ -1500,6 +1704,10 @@
         <a href="#practice" class="nav-link">實戰步驟</a>
         <a href="#more" class="nav-link">延伸閱讀</a>
       </nav>
+      <button class="reading-toggle-single" onclick="toggleReadingMode()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="toggle-icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="toggle-text">詳細</span>
+      </button>
     </div>
   </header>
 
@@ -1602,7 +1810,8 @@
         <p class="lead">股票成功的將「個人的冒險資本」轉化為「集體的社會財富」，了解它才能理解為何股市長線向上。</p>
       </div>
 
-      <div class="summary-panel scroll-fade-in">
+      <div class="view-summary">
+<div class="summary-panel scroll-fade-in">
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-icon">
@@ -1652,7 +1861,9 @@
           <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         
-        <div class="accordion-content" id="full-text-1">
+          </div>
+</div>
+<div class="view-full accordion-content" id="full-text-1">
           <div class="full-text">
             <p>在開始買賣之前，我們必須先知道「股票」是怎麼來的。股票的誕生是人類金融史上最偉大的創新之一，它成功將「個人的冒險資本」轉化為「集體的社會財富」。</p>
             <h4>1. 股票的起源：大航海時代與海上冒險（15-17世紀）</h4>
@@ -1675,8 +1886,7 @@
             <blockquote>股票的本質從未改變 —— 它是企業家募集資金的工具，也是一般人共享社會經濟進步成果的橋樑。只要人類科技與文明在進步，代表頂尖企業集合的大盤，長線趨勢就會持續上升。</blockquote>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- ===== 第二章 商業本質 ===== -->
     <section id="business">
@@ -1686,7 +1896,8 @@
         <p class="lead">買股票就像跟朋友合資開雞排店。你出資 10 萬元，朋友給你 10% 股份憑證，大賺時分紅。你不用會做生意，頂尖企業會幫你賺錢。</p>
       </div>
 
-      <div class="summary-panel scroll-fade-in">
+      <div class="view-summary">
+<div class="summary-panel scroll-fade-in">
         <h3 style="margin-bottom: 16px;">💡 3 個新手最常混淆的觀念</h3>
         
         <div class="clarity-grid">
@@ -1767,7 +1978,9 @@
           <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         
-        <div class="accordion-content" id="full-text-2">
+          </div>
+</div>
+<div class="view-full accordion-content" id="full-text-2">
           <div class="full-text">
             <p>你可以把買股票想像成「跟朋友合資開雞排店」。你出資 10 萬元，朋友給你一張收據，寫著你擁有這家店 10% 的股份。月底結帳淨賺 5 萬元，朋友依據 10% 股份分給你 5,000 元。這就是股票最迷人的地方：你不需要懂怎麼做生意，只要購買股票成為微型股東，全球頂尖菁英就會幫你賺錢。</p>
             <p>很多新手常混淆幾個觀念，我們一次釐清：</p>
@@ -1786,8 +1999,7 @@
             <blockquote><strong>邏輯修正提醒：</strong> 股價反映的是企業長期的價值成長。長線投資人（包含大盤型 ETF 持有者）並非在玩「低買高賣、尋找接盤俠」的零和遊戲，而是透過持續持有，與全球頂尖企業共享長期營運所帶來的利潤與資產增值。</blockquote>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- ===== 第三章 資產配置 ===== -->
     <section id="allocation">
@@ -1797,7 +2009,8 @@
         <p class="lead">沒有完美的工具，只有最適合當下情境的配置。定存與 ETF 各司其職，盲目全押某方是不理智的。</p>
       </div>
 
-      <div class="summary-panel scroll-fade-in">
+      <div class="view-summary">
+<div class="summary-panel scroll-fade-in">
         <h3 style="margin-bottom: 18px;">⚖️ 銀行定存 vs. 大盤型 ETF 客觀比較</h3>
         
         <div class="versus-container">
@@ -1942,7 +2155,9 @@
           <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         
-        <div class="accordion-content" id="full-text-3">
+          </div>
+</div>
+<div class="view-full accordion-content" id="full-text-3">
           <div class="full-text">
             <p>在理財的世界裡，沒有最完美的工具，只有最適合當下情境的配置。定存與 ETF 各司其職，盲目地將資金全數投入任何一方都是不理智的。</p>
             <h4>1. 銀行定存 vs. 大盤型 ETF 客觀比較</h4>
@@ -1976,8 +2191,7 @@
             </blockquote>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- ===== 第四章 主流 ETF ===== -->
     <section id="etf">
@@ -1988,7 +2202,8 @@
       </div>
 
       <!-- 3D 懸浮卡片 -->
-      <div class="tilt-card-grid scroll-fade-in">
+      <div class="view-summary">
+<div class="tilt-card-grid scroll-fade-in">
         <!-- 0050 -->
         <div class="tilt-card tilt-card-0050">
           <div class="tilt-card-content">
@@ -2084,7 +2299,8 @@
         <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       
-      <div class="accordion-content" id="full-text-4">
+      </div>
+<div class="view-full accordion-content" id="full-text-4">
         <div class="full-text">
           <p>新手不要總想著一夕暴富炒短線，老老實實買進參與整體經濟成長的「大盤指數標的」，才是勝率最高的策略。</p>
           <div class="table-container">
@@ -2135,20 +2351,19 @@
         <p class="lead">懂了理論，不踏出第一步就永遠只是看熱鬧。以下我們將實戰演練分為「通用定期定額步驟」與「國泰證券 App 實戰（以 0050 為例）」兩部分，幫助你快速開始。</p>
       </div>
 
-      <div class="summary-panel scroll-fade-in">
+      <div class="view-summary">
+<div class="summary-panel scroll-fade-in">
         <!-- 第一區塊：通用流程 -->
         <h3 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
           1. 通用定期定額步驟（各券商適用）
         </h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">點選步驟卡片即可打勾標記進度，輔助自己一步步完成申購設定：</p>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">以下為定期定額申購的通用關鍵步驟，引導您一步步完成帳戶申購設定：</p>
         
         <div class="stepper">
           <!-- 步進 1 -->
-          <div class="stepper-item" onclick="toggleStep(this)">
-            <div class="stepper-checkbox">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
+          <div class="stepper-item">
+            <div class="stepper-number">1</div>
             <div class="stepper-content">
               <h4>步驟 1. 開戶與綁定</h4>
               <p>選擇一家信譽良好的大型證券商（如富邦、元大、凱基等），準備好身分證與健保卡雙證件，利用線上 App 即可完成證券戶開立，並綁定交割銀行帳戶。</p>
@@ -2156,10 +2371,8 @@
           </div>
 
           <!-- 步進 2 -->
-          <div class="stepper-item" onclick="toggleStep(this)">
-            <div class="stepper-checkbox">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
+          <div class="stepper-item">
+            <div class="stepper-number">2</div>
             <div class="stepper-content">
               <h4>步驟 2. 資金準備（入金）</h4>
               <p>在約定扣款日之前，將你每個月預計投資的閒錢（例如：3,000 元或 5,000 元，務必是短期內用不到的錢）轉帳存入你的銀行交割帳戶中。</p>
@@ -2167,10 +2380,8 @@
           </div>
 
           <!-- 步進 3 -->
-          <div class="stepper-item" onclick="toggleStep(this)">
-            <div class="stepper-checkbox">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
+          <div class="stepper-item">
+            <div class="stepper-number">3</div>
             <div class="stepper-content">
               <h4>步驟 3. 尋找定期定額功能專區</h4>
               <p>打開你的證券商 App，在主要功能選單中點選「台股」或「美股」標籤，接著在畫面中找到「定期定額」或「存股/自動投資」功能入口。</p>
@@ -2178,10 +2389,8 @@
           </div>
 
           <!-- 步進 4 -->
-          <div class="stepper-item" onclick="toggleStep(this)">
-            <div class="stepper-checkbox">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
+          <div class="stepper-item">
+            <div class="stepper-number">4</div>
             <div class="stepper-content">
               <h4>步驟 4. 搜尋你想買的 ETF 標的</h4>
               <p>在搜尋欄位直接輸入你想購買的代號（例如：台股定期定額搜尋 `0050`，美股定期定額搜尋 `VOO`），點選該標的進入申購畫面。</p>
@@ -2189,10 +2398,8 @@
           </div>
 
           <!-- 步進 5 -->
-          <div class="stepper-item" onclick="toggleStep(this)">
-            <div class="stepper-checkbox">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
+          <div class="stepper-item">
+            <div class="stepper-number">5</div>
             <div class="stepper-content">
               <h4>步驟 5. 設定扣款金額與日期</h4>
               <p>輸入你每個月打算投資的金額（台股最低只要 100 元），並勾選每個月要自動扣款的日期（例如每月的 8 號、18 號或 28 號，可複選以分散天數）。</p>
@@ -2200,10 +2407,8 @@
           </div>
 
           <!-- 步進 6 -->
-          <div class="stepper-item" onclick="toggleStep(this)">
-            <div class="stepper-checkbox">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
+          <div class="stepper-item">
+            <div class="stepper-number">6</div>
             <div class="stepper-content">
               <h4>步驟 6. 確認並送出申購</h4>
               <p>仔細檢查扣款金額、扣款日期與 ETF 代號無誤後，按下「確認申購」，並輸入交易密碼。恭喜你，你的自動財富增值計劃正式啟動！</p>
@@ -2211,10 +2416,8 @@
           </div>
 
           <!-- 步進 7 -->
-          <div class="stepper-item" onclick="toggleStep(this)">
-            <div class="stepper-checkbox">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
+          <div class="stepper-item">
+            <div class="stepper-number">7</div>
             <div class="stepper-content">
               <h4>步驟 7. 選擇扣款幣別 <span class="tag">美股專屬</span></h4>
               <p>若申購美股 ETF，可選擇「台幣扣款」（交由券商自動以當下匯率換匯，最省心），或選擇「外幣扣款」（平時趁匯率低點自行換好美元存入外幣交割帳戶）。</p>
@@ -2318,7 +2521,9 @@
           <svg class="chev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         
-        <div class="accordion-content" id="full-text-5">
+          </div>
+</div>
+<div class="view-full accordion-content" id="full-text-5">
           <div class="full-text">
             <p>懂了理論，不踏出第一步就永遠只是看熱鬧。以下教你如何用最省力的「定期定額」買進人生第一筆 ETF：</p>
             <ol>
@@ -2333,8 +2538,7 @@
             <blockquote><strong>最後的叮嚀：</strong> 投資市場上最終的贏家，往往不是最聰明、最會預測高低點的人，而是最能堅持紀律、在波動中依然不中斷扣款的人。定期定額、長線持有，讓時間成為你最好的朋友。</blockquote>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- ===== 延伸閱讀資源 ===== -->
     <section id="more">
@@ -2500,6 +2704,22 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
 
+  <!-- 行動端閱讀模式切換懸浮按鈕 -->
+  <button id="reading-toggle-fab" onclick="toggleReadingMode()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="toggle-icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    <span class="toggle-text">詳細</span>
+  </button>
+
+  <!-- Lightbox 表格放大遮罩 -->
+  <div id="table-lightbox-container" class="table-lightbox" onclick="closeTableLightbox()">
+    <button class="table-lightbox-close" onclick="closeTableLightbox()">&times;</button>
+    <div class="table-lightbox-wrapper" onclick="event.stopPropagation()">
+      <div class="table-lightbox-scroll" id="table-lightbox-content">
+        <!-- 複製過來的表格會放在這裡 -->
+      </div>
+    </div>
+  </div>
+
   <!-- Lightbox 圖片放大遮罩 -->
   <div id="lightbox-container" class="lightbox" onclick="closeLightbox()">
     <img id="lightbox-img" src="" alt="放大圖示">
@@ -2510,6 +2730,9 @@
     const progressBar = document.getElementById('progress-bar');
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
+    const navbar = document.querySelector('header.navbar');
+    let lastScrollY = window.scrollY;
+    let lastActiveSectionId = '';
 
     window.addEventListener('scroll', () => {
       // 進度條
@@ -2527,12 +2750,42 @@
         }
       });
       
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSectionId}`) {
-          link.classList.add('active');
+      if (currentSectionId && currentSectionId !== lastActiveSectionId) {
+        lastActiveSectionId = currentSectionId;
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+            
+            // Center the active link in the mobile nav-menu
+            const navMenu = document.querySelector('.nav-menu');
+            if (navMenu) {
+              const menuWidth = navMenu.clientWidth;
+              const linkWidth = link.clientWidth;
+              const linkLeft = link.offsetLeft;
+              navMenu.scrollTo({
+                left: linkLeft - (menuWidth / 2) + (linkWidth / 2),
+                behavior: 'smooth'
+              });
+            }
+          }
+        });
+      }
+
+      // Smart scroll-to-hide navbar
+      if (window.scrollY > 80) {
+        if (window.scrollY > lastScrollY) {
+          // Scrolling down
+          navbar.classList.add('hide-nav');
+        } else {
+          // Scrolling up
+          navbar.classList.remove('hide-nav');
         }
-      });
+      } else {
+        navbar.classList.remove('hide-nav');
+      }
+      lastScrollY = window.scrollY;
 
       // 回頂部按鈕顯示
       const backToTopBtn = document.getElementById('back-to-top');
@@ -2547,6 +2800,83 @@
     document.getElementById('back-to-top').addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // ===== 2. 雙軌閱讀模式切換與狀態延續 JS =====
+    function getClosestSection() {
+      const sections = document.querySelectorAll('section');
+      let closestSection = null;
+      let minDistance = Infinity;
+      const navbarHeight = 80;
+      
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        const distance = Math.abs(rect.top - navbarHeight);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestSection = sec;
+        }
+      });
+      return closestSection;
+    }
+
+    function setReadingMode(mode) {
+      const toggleBtnText = document.querySelectorAll('.reading-toggle-single .toggle-text, #reading-toggle-fab .toggle-text');
+      const toggleBtnIcon = document.querySelectorAll('.reading-toggle-single .toggle-icon, #reading-toggle-fab .toggle-icon');
+      
+      if (mode === 'full') {
+        document.body.classList.add('full-mode');
+        document.body.classList.remove('summary-mode');
+        try {
+          localStorage.setItem('readingMode', 'full');
+        } catch (e) {}
+        
+        toggleBtnText.forEach(el => el.textContent = '精簡');
+        toggleBtnIcon.forEach(el => {
+          el.innerHTML = '<rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 8h10M7 12h10M7 16h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
+        });
+      } else {
+        document.body.classList.remove('full-mode');
+        document.body.classList.add('summary-mode');
+        try {
+          localStorage.setItem('readingMode', 'summary');
+        } catch (e) {}
+        
+        toggleBtnText.forEach(el => el.textContent = '詳細');
+        toggleBtnIcon.forEach(el => {
+          el.innerHTML = '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>';
+        });
+      }
+    }
+
+    function toggleReadingMode() {
+      const closestSec = getClosestSection();
+      const closestSecId = closestSec ? closestSec.getAttribute('id') : null;
+      
+      const currentMode = document.body.classList.contains('full-mode') ? 'summary' : 'full';
+      setReadingMode(currentMode);
+      
+      if (closestSecId) {
+        const targetEl = document.getElementById(closestSecId);
+        if (targetEl) {
+          setTimeout(() => {
+            const headerEl = targetEl.querySelector('.section-header') || targetEl;
+            const rect = headerEl.getBoundingClientRect();
+            const absoluteTop = window.scrollY + rect.top;
+            window.scrollTo({
+              top: absoluteTop - 85,
+              behavior: 'smooth'
+            });
+          }, 50);
+        }
+      }
+    }
+
+    // 初始化閱讀模式
+    let savedMode = 'summary';
+    try {
+      savedMode = localStorage.getItem('readingMode') || 'summary';
+    } catch (e) {}
+    setReadingMode(savedMode);
 
 
 
@@ -2603,10 +2933,7 @@
       scrollObserver.observe(el);
     });
 
-    // ===== 5. 互動式步進器 Checkbox 功能 =====
-    function toggleStep(element) {
-      element.classList.toggle('checked');
-    }
+    // ===== 5. 互動式步進器 Checkbox 功能已移除 =====
 
     // ===== 6. Lightbox 圖片放大功能 =====
     const lightbox = document.getElementById('lightbox-container');
@@ -2699,6 +3026,69 @@
         }, 3000);
       }
     }
+
+    // Expose functions globally to prevent ReferenceErrors on inline event handlers
+    window.toggleReadingMode = toggleReadingMode;
+    window.openLightbox = openLightbox;
+    window.closeLightbox = closeLightbox;
+    window.handleContactSubmit = handleContactSubmit;
+
+    // ===== 6.2 表格 Lightbox 放大功能 =====
+    function initTableLightbox() {
+      const tableContainers = document.querySelectorAll('.table-container');
+      tableContainers.forEach(container => {
+        if (!container.querySelector('.table-hint')) {
+          const hint = document.createElement('div');
+          hint.className = 'table-hint';
+          hint.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            📱 點擊表格可放大閱讀
+          `;
+          container.insertBefore(hint, container.firstChild);
+        }
+        
+        const table = container.querySelector('table');
+        if (table) {
+          table.style.cursor = 'zoom-in';
+          table.addEventListener('click', (e) => {
+            if (container.closest('#table-lightbox-container')) return;
+            openTableLightbox(table.cloneNode(true));
+          });
+        }
+      });
+    }
+
+    const tableLightbox = document.getElementById('table-lightbox-container');
+    const tableLightboxContent = document.getElementById('table-lightbox-content');
+
+    function openTableLightbox(tableEl) {
+      if (!tableLightbox || !tableLightboxContent) return;
+      tableLightboxContent.innerHTML = '';
+      tableEl.style.cursor = 'default';
+      
+      const rotateHint = document.createElement('div');
+      rotateHint.className = 'table-lightbox-rotate-hint';
+      rotateHint.innerHTML = '📱 提示：手機轉為橫向閱讀，表格更清晰完整';
+      
+      tableLightboxContent.appendChild(rotateHint);
+      tableLightboxContent.appendChild(tableEl);
+      tableLightbox.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTableLightbox() {
+      if (tableLightbox) {
+        tableLightbox.classList.remove('show');
+      }
+      document.body.style.overflow = '';
+    }
+
+    window.initTableLightbox = initTableLightbox;
+    window.openTableLightbox = openTableLightbox;
+    window.closeTableLightbox = closeTableLightbox;
+
+    // 初始化表格 Lightbox
+    initTableLightbox();
   </script>
 </body>
 </html>
